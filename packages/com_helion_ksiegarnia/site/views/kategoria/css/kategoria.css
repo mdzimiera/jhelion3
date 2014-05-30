@@ -1,0 +1,89 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-03-04, 15:57:06
+    Author     : marek
+*/
+
+.helion_ksiazka {
+     
+    border-bottom: 1px solid #ddd; 
+    width: 90%; 
+    margin-bottom: 10px; 
+    padding: 10px; 
+    
+}
+    
+.ksiazka_info {
+
+    width: 500px; 
+    float: right;
+    
+}
+    
+.helion_kategorie {
+
+    display: inline;
+    padding-left: 0px !important;
+    list-style-type: square;
+    
+}
+    
+.helion_kategorie li {
+
+    display: inline;
+    margin-right: 10px !important;
+    
+}
+
+.helion_wyszukiwarka {
+
+    width: 260px;
+    float: right;
+    
+}
+    
+.helion_wyszukiwarka input[type=text] {
+
+    width: 150px;
+    padding: 2px;
+    border: 1px solid #ddd;
+    
+}
+
+.wyszukiwarka_clear {
+
+    clear: both;
+    
+}
+
+.helion_ksiazka h3 a {
+ 
+    text-decoration: none;
+    
+}
+
+.helion_ksiazka h3 a:hover {
+
+    text-decoration: none;
+    background: none !important;
+    color: #444444 !important;
+    
+}
+
+p a {
+    
+    text-decoration: none;
+    
+}
+
+p a:hover {
+
+    text-decoration: none;
+    background: none !important;
+    color: #444444 !important;
+    
+}

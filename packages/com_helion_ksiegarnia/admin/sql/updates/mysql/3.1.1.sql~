@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS `#__helion`;
+DROP TABLE IF EXISTS `#__helion_status`;
+DROP TABLE IF EXISTS `#__helion_config`;
+

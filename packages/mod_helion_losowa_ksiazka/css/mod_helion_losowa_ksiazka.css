@@ -1,0 +1,72 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-02-28, 10:06:10
+    Author     : marek
+*/
+
+.helion_losowa_ksiazka {
+    
+    /*width: 253px;*/
+    text-align: center;
+    font-family: Helvetica,Arial,FreeSans,sans-serif;
+    color: #444444;
+    
+}
+    
+.helion_losowa_ksiazka .okladka {
+
+    margin: 10px auto;
+    
+}
+
+.helion_losowa_ksiazka .dokoszyka {
+        
+    width: 138px;
+    margin: 10px auto;
+
+}
+    
+.helion_losowa_ksiazka .info p {
+    
+    text-align: center;
+    
+}
+
+.helion_losowa_ksiazka ul {
+        
+    list-style-type: disc !important;
+    text-align: left;
+    margin: 0 0 10px 25px !important;
+    padding: 0;
+    
+}
+
+.helion_losowa_ksiazka ul li {
+
+    line-height: 20px;
+    
+}
+    
+.helion_losowa_ksiazka ul li.tytul{
+
+    text-align: center;
+    
+}
+    
+.helion_losowa_ksiazka h4.tytul a {
+
+    text-decoration: none;
+    
+}
+
+.helion_losowa_ksiazka h4.tytul a:hover {
+
+    text-decoration: none;
+    background: none;
+    color: #444444;
+    
+}

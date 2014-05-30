@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" method="upgrade">
+    <name>Helion Wyszukiwarka</name>
+    <author>Marek Dzimiera</author>
+    <version>3.1.1</version>
+    <description>Moduł wyszukiwarki działa w połączeniu z komponentem Helion Księgarnia. Pozwala umieścić na stronie wyszukiwarkę książek.</description>
+    <files>
+        <filename>mod_helion_wyszukiwarka.xml</filename>
+        <filename module="mod_helion_wyszukiwarka">mod_helion_wyszukiwarka.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+        <filename>css/mod_helion_wyszukiwarka.css</filename>
+    </files>
+	<config>
+	<fields name="params">
+            <fieldset name="basic">
+				<field
+                    name="link_ksiegarnia"
+                    type="text"
+                    default=""
+                    label="Link do księgarni:"
+                    description="Link do strony głównej księgarni, np. http://www.twojastrona.pl/index.php/component/helion" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

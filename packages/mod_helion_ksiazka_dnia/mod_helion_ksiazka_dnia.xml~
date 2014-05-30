@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" method="upgrade">
+    <name>Helion Książka Dnia</name>
+    <author>Marek Dzimiera</author>
+    <version>3.1.1</version>
+    <description>Moduł wyświetlający książkę dnia (w promocji) z dowolnej księgarni GW Helion</description>
+    <files>
+        <filename>mod_helion_ksiazka_dnia.xml</filename>
+        <filename module="mod_helion_ksiazka_dnia">mod_helion_ksiazka_dnia.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+        <filename>css/mod_helion_ksiazka_dnia.css</filename>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="ksiegarnia"
+                    type="list"
+                    label="Księgarnia:"
+					default="helion"
+                    description="Nazwa księgarni">
+					<option value="helion">Helion</option>
+					<option value="onepress">Onepress</option>
+					<option value="sensus">Sensus</option>
+					<option value="septem">Septem</option>
+					<option value="ebookpoint">Ebookpoint</option>
+                                        <option value="bezdroza">Bezdroża</option>
+		</field>
+                <field
+                    name="partner"
+                    type="text"
+                    default="1234k"
+                    label="Identyfikator partnera:"
+                    description="5-znakowy identyfikator partnera programu" />
+                <field
+                    name="cyfra"
+                    type="text"
+                    default=""
+                    label="Cyfra:"
+                    description="To dodatkowy parametr, dzięki któremu możesz zbadać skuteczność kampanii. Jeśli
+prowadzisz dwie strony, na jednej możesz ustawić cyfrę 1, a na drugiej cyfrę 2 i gdy ktoś
+dokona zakupu, dostaniesz maila, w którym oprócz informacji o zakupach zostanie
+przekazana ta cyfra i dzięki temu będziesz wiedział, z jakiej strony został dokonany zakup.
+Jeśli nie chcesz korzystać z tego parametru, pozostaw puste pole." />
+		<field
+                    name="okladka"
+                    type="list"
+                    label="Rozmiar okładki:"
+					default="120x156"
+                    description="Rozmiar okładki w pikselach">
+					<option value="65x85">65x85</option>
+					<option value="72x95">72x95</option>
+					<option value="88x115">88x115</option>
+					<option value="90x119">90x119</option>
+					<option value="120x156">120x156</option>
+					<option value="125x163">125x163</option>
+					<option value="181x236">181x236</option>
+					<option value="326x466">326x466</option>
+		</field>
+                <field
+                    name="czy_cena"
+                    type="list"
+                    label="Pokaż cenę:"
+					default="1"
+                    description="Wyświetlanie ceny pozycji">
+					<option value="0">Nie</option>
+					<option value="1">Tak</option>
+		</field>
+                <field
+                    name="czy_autor"
+                    type="list"
+                    label="Pokaż autora:"
+					default="1"
+                    description="Wyświetlanie autora">
+					<option value="0">Nie</option>
+					<option value="1">Tak</option>
+		</field>
+                <field
+                    name="czy_znizka"
+                    type="list"
+                    label="Pokaż zniżkę:"
+					default="1"
+                    description="Wyświetlanie zniżki w procentach">
+					<option value="0">Nie</option>
+					<option value="1">Tak</option>
+				</field>
+                <field
+                    name="czy_marka"
+                    type="list"
+                    label="Pokaż markę:"
+					default="1"
+                    description="Wyświetlanie nazwy marki">
+					<option value="0">Nie</option>
+					<option value="1">Tak</option>
+		</field>
+                <field
+                    name="czy_status"
+                    type="list"
+                    label="Pokaż status:"
+					default="1"
+                    description="Wyświetlanie statusu dostępności">
+					<option value="0">Nie</option>
+					<option value="1">Tak</option>
+		</field>
+                <field
+                    name="czy_typ"
+                    type="list"
+                    label="Pokaż typ:"
+					default="1"
+                    description="Wyświetlanie typu pozycji">
+					<option value="0">Nie</option>
+					<option value="1">Tak</option>
+		</field>
+                <field
+                    name="czy_ean"
+                    type="list"
+                    label="Pokaż EAN:"
+					default="1"
+                    description="Wyświetlanie EAN pozycji">
+					<option value="0">Nie</option>
+					<option value="1">Tak</option>
+		</field>
+                <field
+                    name="czy_isbn"
+                    type="list"
+                    label="Pokaż ISBN:"
+					default="1"
+                    description="Wyświetlanie ISBN pozycji">
+					<option value="0">Nie</option>
+					<option value="1">Tak</option>
+		</field>
+            </fieldset>
+	</fields>
+    </config>
+</extension>

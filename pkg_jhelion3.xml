@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="3.1">
+<name>Helion Widget Package</name>
+<author>Marek Dzimiera</author>
+<creationDate>March 2014</creationDate>
+<packagename>jhelion3</packagename>
+<version>3.1.1</version>
+<url></url>
+<packager></packager>
+<packagerurl></packagerurl>
+<description>Pakiet komponentów oraz modułów Helion</description>
+<update></update>
+<files folder="packages">
+   <file type="component" id="helion">com_helion_ksiegarnia.zip</file>
+   <file type="module" id="helion" client="site">mod_helion_kategorie.zip</file>
+   <file type="module" id="helion" client="site">mod_helion_wyszukiwarka.zip</file>
+   <file type="module" id="helion" client="site">mod_helion_bestsellery.zip</file>
+   <file type="module" id="helion" client="site">mod_helion_ksiazka_dnia.zip</file>
+   <file type="module" id="helion" client="site">mod_helion_losowa_ksiazka.zip</file>
+   <file type="module" id="helion" client="site">mod_helion_pojedyncza_ksiazka.zip</file>
+</files>
+</extension>

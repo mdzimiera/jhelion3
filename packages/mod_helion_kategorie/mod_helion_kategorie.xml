@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" method="upgrade">
+    <name>Helion Kategorie</name>
+    <creationDate>March 2014</creationDate>
+    <author>Marek Dzimiera</author>
+    <version>3.1.1</version>
+    <description>Moduł towarzyszący Księgarni - wyświetla listę kategorii</description>
+    <files>
+        <filename>mod_helion_kategorie.xml</filename>
+        <filename module="mod_helion_kategorie">mod_helion_kategorie.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+        <filename>css/mod_helion_kategorie.css</filename>
+        <filename>js/mod_helion_kategorie.js</filename>
+    </files>
+	<config>
+	<fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="ksiegarnia"
+                    type="list"
+                    label="Księgarnia:"
+					default="helion"
+                    description="Nazwa księgarni">
+					<option value="helion">Helion</option>
+					<option value="onepress">Onepress</option>
+					<option value="sensus">Sensus</option>
+					<option value="septem">Septem</option>
+					<option value="ebookpoint">Ebookpoint</option>
+                                        <option value="bezdroza">Bezdroża</option>
+				</field>
+				<field
+                    name="ksiegarnia_link"
+                    type="text"
+                    default=""
+                    label="Link do księgarni:"
+                    description="Adres URL będący ścieżką do strony głównej księgarni na stronie, np. http://www.strona.pl/index.php/component/helion" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
