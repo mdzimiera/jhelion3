@@ -245,3 +245,17 @@ $wyszukiwarka_w_tresci = $db->loadResult();
 <p>Możesz zainstalować osobny moduł mod_helion_kategorie, który umożliwia wyświetlanie listy kategorii np. na pasku bocznym. Warto wtedy wyłączyć wyświetlanie kategorii w treści.</p>
 <p>Więcej informacji na temat Programu Partnerskiego znajdziesz na <a href="http://program-partnerski.helion.pl/" target="_blank">oficjalnej stronie</a></p>.
 <p>Zauważyłeś błąd? Chcesz zgłosić problem? Masz propozycję nowej funkcjonalności dla rozszerzenia? Napisz nam o tym na <a href="http://program-partnerski.helion.pl/forum/" target="_blank">Forum Programu Partnerskiego</a>!</p>
+
+
+<div id="system-message-container">
+<?php if(!extension_loaded("simplexml")):?>
+    <div id="system-message" class="alert alert-error">
+        <p class="error">Brak zainstalowanego rozszerzenia <b>"simplexml"</b>. Zgłoś prośbę do administratora o dodanie rozszerzenia.</p>
+    </div>
+<?php endif?>
+<?php if(!function_exists('curl_version')):?>
+    <div id="system-message" class="alert alert-error">
+        <p class="error">Brak zainstalowanej funkcji <b>"curl"</b>. Zgłoś prośbę do administratora o dodanie funkcji.</p>
+    </div>
+<?php endif;?>
+</div>
