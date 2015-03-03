@@ -167,20 +167,36 @@ $result = $db->loadAssocList();
 foreach($result as $ksiazka) {
     $url = JURI::current() . "?view=ksiazka&ident=" . $ksiazka['ident'] . "&ksiegarnia=" . $ksiazka['ksiegarnia'];
     $koszyk = "http://" . $ksiazka['ksiegarnia'] . ".pl/add/" . $partner_id . "/" . $cyfra . "/" . $ksiazka['ident'];
+    
+    if(!empty($ksiazka['tytul'])){
 ?>
 <div class="helion_ksiazka">
-    <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><img src="http://<?php echo $ksiegarnia; ?>.pl/okladki/125x163/<?php echo $ksiazka['ident']; ?>.jpg" /></a>
     <div class="ksiazka_info">
-        <h3><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $ksiazka['tytul']; ?></a></h3>
-        <p class="autor">Autor: <?php echo $ksiazka['autor']; ?></p>
-        <p>
+    <table width="100%">
+        <tr>
+            <td rowspan="5" class="okladka"><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><img src="http://<?php echo $ksiegarnia; ?>.pl/okladki/125x163/<?php echo preg_replace('/\_ebook$/i', '', $ksiazka['ident']); ?>.jpg" /></a></td>
+            <td><h3><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $ksiazka['tytul']; ?></a></h3></td>
+        </tr>
+        <tr>
+            <td class="autor">Autor: <?php echo $ksiazka['autor']; ?></td>
+        </tr>
+        <tr>
+            <td class="format">Format: <?php if(preg_match('/\_ebook$/i', $ksiazka['ident'])):?>eBook<?php else:?>Druk<?php endif?></td>
+        </tr>
+        <tr>
+            <td class="pcena">
             <span class="cena">Cena: <?php echo $ksiazka['cena']; ?> zł</span> 
             <?php if($ksiazka['znizka'] > 0) echo ' <span class="znizka">(-' . $ksiazka['znizka'] . "%)</span>"; ?>
-        </p>
-        <p class="kupteraz"><a href="<?php echo $koszyk; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p>
+        </td>
+        </tr>
+        <tr>
+            <td><p class="kupteraz"><a href="<?php echo $koszyk; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p></td>
+        </tr>
+    </table>
     </div>
 </div>
 <?php
+    }
 }
 ?>
 

@@ -35,8 +35,8 @@ and open the template in the editor.
     
 .ksiazka_info {
 
-    width: 500px; 
-    float: right;
+    /*width: 500px; 
+    float: right;*/
     
 }
     
@@ -73,4 +73,15 @@ and open the template in the editor.
     background: none !important;
     color: #444444 !important;
     
+}
+
+.helion_ksiazka td.autor, 
+.helion_ksiazka td.format,
+.helion_ksiazka td.pcena {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+table td.okladka {
+    width: 135px;
 }

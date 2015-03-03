@@ -204,7 +204,7 @@ foreach($result as $ksiazka) {
 ?>
     <li>    
         <div class="helion_ksiazka">
-            <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['title']?>"><img src="http://helion.pl/okladki/90x119/<?php echo $ident; ?>.jpg" /></a>
+            <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['title']?>"><img src="http://helion.pl/okladki/90x119/<?php echo preg_replace('/\_ebook$/i', '', $ident); ?>.jpg" /></a>
             <div class="ksiazka_info">
                 <h3><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $this->trunc($ksiazka['tytul'], 5); ?></a></h3>
                 <p class="autor">Autor: <?php $a = explode(",", $ksiazka['autor']); if(count($a) == 1) { echo $a[0]; } else { echo $a[0] . " i in."; }; ?></p>
@@ -245,7 +245,7 @@ foreach($result as $ksiazka) {
 ?>
     <li>
         <div class="helion_ksiazka">
-            <a href="<?php echo $url; ?>"><img src="http://helion.pl/okladki/90x119/<?php echo $ident; ?>.jpg" /></a>
+            <a href="<?php echo $url; ?>"><img src="http://helion.pl/okladki/90x119/<?php echo preg_replace('/\_ebook$/i', '', $ident); ?>.jpg" /></a>
             <div class="ksiazka_info">
                 <h3><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $this->trunc($ksiazka['tytul'], 5); ?></a></h3>
                 <p class="autor">Autor: <?php $a = explode(",", $ksiazka['autor']); if($a == $ksiazka['autor']) { echo $a; } else { echo $a[0] . " i in."; }; ?></p>

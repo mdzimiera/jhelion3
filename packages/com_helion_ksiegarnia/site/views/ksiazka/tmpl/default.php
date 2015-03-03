@@ -62,13 +62,14 @@ if($wyszukiwarka_w_tresci) {
 <?php } ?>
 
 <div class="helion_ksiazka">
-    <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><img src="http://helion.pl/okladki/181x236/<?php echo $ksiazka['ident']; ?>.jpg" /></a>
+    <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><img src="http://helion.pl/okladki/181x236/<?php echo preg_replace('/\_ebook$/i', '', $ksiazka['ident']); ?>.jpg" /></a>
     <div class="ksiazka_info">
         <h3 class="tytul"><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $ksiazka['tytul']; ?></a></h3>
         <p class="autor">Autor: <strong><?php echo $ksiazka['autor']; ?></strong></p>
+        <p class="format">Format: <?php if(preg_match('/\_ebook$/i', $ksiazka['ident'])):?>eBook<?php else:?>Druk<?php endif?></p>
         <p class="datawydania">Data wydania: <?php echo $ksiazka['datawydania']; ?></p>
         <p class="stron">Stron: <?php echo $ksiazka['liczbastron']; ?></p>
-        <p class="dostawa">Dostawa 0,00zł</p>
+        <p class="dostawa">Dostawa: 0,00 zł</p>
         <p class="wysylka">Wysyłka w 24h</p>
         <p class="nowosc_bestseller"><?php echo $nowosc . " " . $bestseller; ?></p>
     </div>
