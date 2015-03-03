@@ -6,6 +6,9 @@ JToolBarHelper::title(   JText::_( 'Helion - Program Partnerski' ), 'generic.png
 
 $db =& JFactory::getDBO();
 
+$xmlprodukty = true;
+$xmlkategorie = true;
+
 switch(JRequest::getVar('action')) {
     case 'save':
         $partner_id = JRequest::getString('partner_id');
@@ -62,49 +65,52 @@ switch(JRequest::getVar('action')) {
         $out = curl_exec($ch);
         curl_close($ch);
 
-        $xml = simplexml_load_string($out);
+        if(($xml = simplexml_load_string($out)) !== false){
 
-        foreach($xml->lista->ksiazka as $ksiazka) {
-            $ks = new stdClass();
-            $ks->id = null;
-            $ks->ksiegarnia = $ksiegarnia;
-            $ks->ident = strtolower($ksiazka->ident);
-            $ks->isbn = (string) $ksiazka->isbn;
-            $ks->link = (string) $ksiazka->link;
-            $ks->autor = (string) $ksiazka->autor;
-            $ks->tlumacz = (string) $ksiazka->tlumacz;
-            $ks->status = (string) $ksiazka->status;
-            $ks->cena = (string) $ksiazka->cena;
-            $ks->cenadetaliczna = (string) $ksiazka->cenadetaliczna;
-            $ks->znizka = (string) $ksiazka->znizka;
-            $ks->marka = (string) $ksiazka->marka;
-            $ks->nazadanie = (string) $ksiazka->nazadanie;
-            $ks->format = (string) $ksiazka->format;
-            $ks->liczbastron = (string) $ksiazka->liczbastron;
-            $ks->oprawa = (string) $ksiazka->oprawa;
-            $ks->bestseller = (string) $ksiazka->bestseller;
-            $ks->nowosc = (string) $ksiazka->nowosc;
-            $ks->opis = (string) $ksiazka->opis;
-            $ks->datawydania = (string) $ksiazka->datawydania;
+            foreach($xml->lista->ksiazka as $ksiazka) {
+                $ks = new stdClass();
+                $ks->id = null;
+                $ks->ksiegarnia = $ksiegarnia;
+                $ks->ident = strtolower($ksiazka->ident);
+                $ks->isbn = (string) $ksiazka->isbn;
+                $ks->link = (string) $ksiazka->link;
+                $ks->autor = (string) $ksiazka->autor;
+                $ks->tlumacz = (string) $ksiazka->tlumacz;
+                $ks->status = (string) $ksiazka->status;
+                $ks->cena = (string) $ksiazka->cena;
+                $ks->cenadetaliczna = (string) $ksiazka->cenadetaliczna;
+                $ks->znizka = (string) $ksiazka->znizka;
+                $ks->marka = (string) $ksiazka->marka;
+                $ks->nazadanie = (string) $ksiazka->nazadanie;
+                $ks->format = (string) $ksiazka->format;
+                $ks->liczbastron = (string) $ksiazka->liczbastron;
+                $ks->oprawa = (string) $ksiazka->oprawa;
+                $ks->bestseller = (string) $ksiazka->bestseller;
+                $ks->nowosc = (string) $ksiazka->nowosc;
+                $ks->opis = (string) $ksiazka->opis;
+                $ks->datawydania = (string) $ksiazka->datawydania;
 
-            foreach($ksiazka->tytul as $tytul) {
-                if($tytul->attributes()->language == "polski") {
-                    $ks->tytul = (string) $tytul;
-                } else {
-                    $ks->tytul_orig = (string) $tytul;
+                foreach($ksiazka->tytul as $tytul) {
+                    if($tytul->attributes()->language == "polski") {
+                        $ks->tytul = (string) $tytul;
+                    } else {
+                        $ks->tytul_orig = (string) $tytul;
+                    }
                 }
+
+                $kategorie = array();
+                $ids = array();
+
+                foreach($ksiazka->serietematyczne->seriatematyczna as $kategoria) {
+                    $ids[] = (int) $kategoria->attributes()->id;
+                }
+
+                $ks->kategorie = "," . join(",", $ids) . ",";
+
+                $db->insertObject('#__helion', $ks, 'id');
             }
-
-            $kategorie = array();
-            $ids = array();
-
-            foreach($ksiazka->serietematyczne->seriatematyczna as $kategoria) {
-                $ids[] = (int) $kategoria->attributes()->id;
-            }
-
-            $ks->kategorie = "," . join(",", $ids) . ",";
-
-            $db->insertObject('#__helion', $ks, 'id');
+        }else{
+            $xmlprodukty = false;
         }
 
         $query = "UPDATE #__helion_status SET update_time = " .$db->quote(time()) . " WHERE ksiegarnia = " . $db->quote($ksiegarnia) . ";";
@@ -130,31 +136,35 @@ switch(JRequest::getVar('action')) {
         $out = curl_exec($ch);
         curl_close($ch);
 
-        $xml = simplexml_load_string($out);
-
-        $lista = array();
-
-        foreach($xml->item as $item) {
-            $grupa_nad = (string) $item->attributes()->grupa_nad;
-            $id_nad = (string) $item->attributes()->id_nad;
-
-            $grupa_pod = (string) $item->attributes()->grupa_pod;
-            $id_pod = (string) $item->attributes()->id_pod;
-            
-            if(!isset($lista[$id_nad])){
-                $lista[$id_nad] = array('nad' => $grupa_nad);
-            }
-            if($grupa_pod != 'eBooki' && !empty($grupa_pod)){
-                $lista[$id_nad]['pod'][$id_pod] = $grupa_pod;
-            }
-        }
-
-        $k = new stdClass();
-        $k->id = null;
-        $k->meta = $ksiegarnia . "_kategorie";
-        $k->value = serialize($lista);
-        $db->insertObject('#__helion_config', $k, 'id');
         
+        if(($xml = simplexml_load_string($out)) !== false){
+
+            $lista = array();
+
+            foreach($xml->item as $item) {
+                $grupa_nad = (string) $item->attributes()->grupa_nad;
+                $id_nad = (string) $item->attributes()->id_nad;
+
+                $grupa_pod = (string) $item->attributes()->grupa_pod;
+                $id_pod = (string) $item->attributes()->id_pod;
+
+                if(!isset($lista[$id_nad])){
+                    $lista[$id_nad] = array('nad' => $grupa_nad);
+                }
+                if($grupa_pod != 'eBooki' && !empty($grupa_pod)){
+                    $lista[$id_nad]['pod'][$id_pod] = $grupa_pod;
+                }
+            }
+
+            $k = new stdClass();
+            $k->id = null;
+            $k->meta = $ksiegarnia . "_kategorie";
+            $k->value = serialize($lista);
+            $db->insertObject('#__helion_config', $k, 'id');
+            
+        }else{
+            $xmlkategorie = false;
+        }
         /**
          * end - dodaj kategorie
          */
@@ -248,6 +258,16 @@ $wyszukiwarka_w_tresci = $db->loadResult();
 
 
 <div id="system-message-container">
+<?php if(!$xmlprodukty):?>
+    <div id="system-message" class="alert alert-error">
+        <p class="error">Nie mogę pobrać pliku z listą produktów.</p>
+    </div>
+<?php endif;?>
+<?php if(!$xmlkategorie):?>
+    <div id="system-message" class="alert alert-error">
+        <p class="error">Nie mogę pobrać pliku z listą kategorii.</p>
+    </div>
+<?php endif;?>
 <?php if(!extension_loaded("simplexml")):?>
     <div id="system-message" class="alert alert-error">
         <p class="error">Brak zainstalowanego rozszerzenia <b>"simplexml"</b>. Zgłoś prośbę do administratora o dodanie rozszerzenia.</p>
