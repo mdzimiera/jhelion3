@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.1" method="upgrade">
+	<name>Helion</name>
+	<creationDate>March 2014</creationDate>
+	<author>Dzimiera Marek</author>
+	<authorEmail>marcus.dzimiera@gmail.com</authorEmail>
+	<authorUrl></authorUrl>
+	<copyright>Copyright (C) Grupa Wydawnicza Helion 2014</copyright>
+	<license>GPL2</license>
+	<version>3.1.2</version>
+	<description>Otwórz własną księgarnię i zarabiaj z Programem Partnerskim GW Helion!</description>
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+ 	<files folder="site">
+		<filename>index.html</filename>
+		<filename>helion.php</filename>
+		<filename>controller.php</filename>
+		<folder>views</folder>
+		<folder>models</folder>
+	</files>
+	<administration>
+		<menu>PP Helion</menu>
+		<files folder="admin">
+			<filename>index.html</filename>
+			<filename>helion.php</filename>
+			<filename>controller.php</filename>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>models</folder>
+			<folder>views</folder>
+		</files>
+	</administration>
+</extension>
