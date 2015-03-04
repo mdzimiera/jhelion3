@@ -16,6 +16,8 @@ Jest to pierwsza wersja wtyczki przeznaczona dla Joomla w wersji 3.x, dlatego mo
 
 	Helion Losowa Książka - ten moduł wyświetla jedną spośród wielu wybranych przez Ciebie książek z różnych księgarni Grupy Helion.
 
+	Helion Serie - pozwala na umieszczenie listy serii danej księgarni np. w bocznym menu.
+
 1) Instalacja
 ----------------------------------
 Należy pobrać paczkę *.zip i zainstalować przy użyciu menedżera rozszerzeń.

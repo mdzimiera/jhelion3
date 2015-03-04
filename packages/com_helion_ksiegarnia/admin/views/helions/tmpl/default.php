@@ -8,6 +8,7 @@ $db =& JFactory::getDBO();
 
 $xmlprodukty = true;
 $xmlkategorie = true;
+$xmlserie = true;
 
 switch(JRequest::getVar('action')) {
     case 'save':
@@ -104,8 +105,13 @@ switch(JRequest::getVar('action')) {
                 foreach($ksiazka->serietematyczne->seriatematyczna as $kategoria) {
                     $ids[] = (int) $kategoria->attributes()->id;
                 }
-
                 $ks->kategorie = "," . join(",", $ids) . ",";
+                
+                $ids = array();
+                foreach($ksiazka->seriewydawnicze->seriawydawnicza as $seria) {
+                    $ids[] = (int) $seria->attributes()->id;
+                }
+                $ks->seriewydawnicze = ",".join(",", $ids).",";
 
                 $db->insertObject('#__helion', $ks, 'id');
             }
@@ -167,6 +173,44 @@ switch(JRequest::getVar('action')) {
         }
         /**
          * end - dodaj kategorie
+         */
+        
+        /**
+         * start - dodaj serie
+         */
+        $query = "DELETE FROM #__helion_config WHERE meta = ".$db->quote($ksiegarnia.'_serie').";";
+        $db->setQuery($query);
+        $db->query();
+        
+        $external = "http://" . $ksiegarnia . ".pl/plugins/new/xml/lista-serie.cgi";
+    
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_URL, $external);
+        $out = curl_exec($ch);
+        curl_close($ch);
+
+        
+        if(($xml = simplexml_load_string($out)) !== false){
+
+            $lista = array();
+
+            foreach($xml->item as $item) {
+                $lista[(int)$item->attributes()->id_seria] = (string)$item->attributes()->seria;
+            }
+
+            $k = new stdClass();
+            $k->id = null;
+            $k->meta = $ksiegarnia . "_serie";
+            $k->value = serialize($lista);
+            $db->insertObject('#__helion_config', $k, 'id');
+            
+        }else{
+            $xmlserie = false;
+        }
+        /**
+         * end - dodaj serie
          */
         
         break;
@@ -268,6 +312,11 @@ $wyszukiwarka_w_tresci = $db->loadResult();
         <p class="error">Nie mogę pobrać pliku z listą kategorii.</p>
     </div>
 <?php endif;?>
+<?php if(!$xmlserie):?>
+    <div id="system-message" class="alert alert-error">
+        <p class="error">Nie mogę pobrać pliku z listą serii.</p>
+    </div>
+<?php endif;?>    
 <?php if(!extension_loaded("simplexml")):?>
     <div id="system-message" class="alert alert-error">
         <p class="error">Brak zainstalowanego rozszerzenia <b>"simplexml"</b>. Zgłoś prośbę do administratora o dodanie rozszerzenia.</p>

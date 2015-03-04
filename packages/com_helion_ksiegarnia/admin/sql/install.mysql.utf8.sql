@@ -53,3 +53,4 @@ CREATE TABLE `#__helion_config` (
 
 INSERT INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion', '1'), ('onepress', '1'), ('sensus', '1'), ('septem', '1'), ('bezdroza', '1'), ('ebookpoint', '1');
 INSERT INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion_kategorie', '1'), ('onepress_kategorie', '1'), ('sensus_kategorie', '1'), ('septem_kategorie', '1'), ('bezdroza_kategorie', '1'), ('ebookpoint_kategorie', '1');
+INSERT INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion_serie', '1'), ('onepress_serie', '1'), ('sensus_serie', '1'), ('septem_serie', '1'), ('bezdroza_serie', '1'), ('ebookpoint_serie', '1');
