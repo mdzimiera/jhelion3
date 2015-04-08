@@ -95,3 +95,15 @@ p a:hover {
     color: #444444 !important;
     
 }
+
+.helion_ksiazka {
+    margin-bottom: 30px;
+}
+
+.helion_details {
+    list-style: none;
+}
+
+.helion_details li {
+    margin-top: 5px;
+}

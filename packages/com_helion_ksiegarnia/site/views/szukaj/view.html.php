@@ -22,6 +22,9 @@ class HelionViewSzukaj extends JViewLegacy
 			//return false;
 		//}
  
+                $document = JFactory::getDocument();
+                $document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'szukaj'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'szukaj.css');
+
 		// Display the view
 		parent::display($tpl);
 	}

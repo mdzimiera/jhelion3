@@ -3,10 +3,6 @@
 defined('_JEXEC') or die('Restricted access');
 $db =& JFactory::getDBO();
 
-// dodaj css
-$document = JFactory::getDocument();
-$document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'ksiazka'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'ksiazka.css');
-
 $cyfra = "82";
 
 $query = "SELECT value FROM #__helion_config WHERE meta = 'partner_id'";
@@ -77,7 +73,7 @@ if($wyszukiwarka_w_tresci) {
     <div class="helion_kup_teraz">
         <p>
             <span class="cena">Cena: <?php echo $ksiazka['cena']; ?> zł</span> 
-            <?php if($ksiazka['znizka'] > 0) echo '<span class="znizka">Zniżka: ' . $ksiazka['znizka'] . "%</span>"; ?>
+            <?php if($ksiazka['znizka'] > 0) echo '<br /><span class="znizka">Zniżka: ' . $ksiazka['znizka'] . "%</span>"; ?>
         </p>
         <p><a href="<?php echo $url; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p>
     </div>
@@ -86,22 +82,37 @@ if($wyszukiwarka_w_tresci) {
             <p class="niedostepna">Książka chwilowo niedostępna.</p>
         </div>
     <?php } ?>
-    <div class="ksiazka_opis">
-        <?php echo $ksiazka['opis']; ?>
-    </div>
-    <?php if($ksiazka['status'] != "0") { ?>
-    <div class="helion_kup_teraz">
-        <p>
-            <span class="cena">Cena: <?php echo $ksiazka['cena']; ?> zł</span> 
-            <?php if($ksiazka['znizka'] > 0) echo '<span class="znizka">Zniżka: ' . $ksiazka['znizka'] . "%</span>"; ?>
-        </p>
-        <p><a href="<?php echo $url; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p>
-    </div>
-    <?php } else { ?>
-        <div class="helion_kup_teraz">
-            <p class="niedostepna">Książka chwilowo niedostępna.</p>
-        </div>
-    <?php } ?>
+    <br /><br />
+    <?php echo JHtml::_('bootstrap.startTabSet', 'ID-Tabs-J31-Group', array('active' => 'tab1_j31_id'));?> 
+
+        <?php echo JHtml::_('bootstrap.addTab', 'ID-Tabs-J31-Group', 'tab1_j31_id', JText::_('Opis książki')); ?> 
+            <?php echo $ksiazka['opis']; ?>
+            <?php if($ksiazka['status'] != "0") { ?>
+            <div class="helion_kup_teraz">
+                <p>
+                    <span class="cena">Cena: <?php echo $ksiazka['cena']; ?> zł</span> 
+                    <?php if($ksiazka['znizka'] > 0) echo '<br /><span class="znizka">Zniżka: ' . $ksiazka['znizka'] . "%</span>"; ?>
+                </p>
+                <p><a href="<?php echo $url; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p>
+            </div>
+            <?php } else { ?>
+                <div class="helion_kup_teraz">
+                    <p class="niedostepna">Książka chwilowo niedostępna.</p>
+                </div>
+            <?php } ?>
+        <?php echo JHtml::_('bootstrap.endTab');?> 
+    
+        <?php echo JHtml::_('bootstrap.addTab', 'ID-Tabs-J31-Group', 'tab2_j31_id', JText::_('Szczegóły')); ?> 
+            <ul class="helion_details">
+                <?php if($ksiazka['tytul_orig']):?><li><b>Tytuł oryginału:</b> <?php echo $ksiazka['tytul_orig']?></li><?php endif;?>
+                <?php if($ksiazka['tlumacz']):?><li><b>Tłumaczenie:</b> <?php echo $ksiazka['tlumacz']?></li><?php endif;?>
+                <?php if($ksiazka['isbn']):?><li><b>Isbn <?php if(preg_match('/\_ebook/i', $ksiazka['ident'])):?>ebooka<?php else:?>książki drukowanej<?php endif;?>:</b> <?php echo $ksiazka['isbn']?></li><?php endif;?>
+                <?php if($ksiazka['datawydania']):?><li><b>Data wydania <?php if(preg_match('/\_ebook/i', $ksiazka['ident'])):?>ebooka<?php else:?>książki drukowanej<?php endif;?>:</b> <?php echo $ksiazka['datawydania']?></li><?php endif;?>
+                <li><b>Czytaj:</b> <a href="http://<?php echo $ksiegarnia?>.pl/ksiazki/<?php echo str_replace('_ebook', '', $ksiazka['ident'])?>.htm#spis-tresci" target="_blank" title="">spis treści</a></li>
+            </ul>
+        <?php echo JHtml::_('bootstrap.endTab');?> 
+    <?php echo JHtml::_('bootstrap.endTabSet');?>
+      
 </div>
 
 <p><a href="<?php echo JURI::current(); ?>">Powrót do strony głównej księgarni</a></p>

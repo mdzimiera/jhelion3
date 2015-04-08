@@ -3,10 +3,6 @@
 defined('_JEXEC') or die('Restricted access');
 $fraza = JRequest::getString('fraza');
 
-// dodaj css
-$document = JFactory::getDocument();
-$document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'szukaj'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'szukaj.css');
-
 if(empty($fraza)) { ?>
 <h1>Księgarnia - Wyszukiwarka</h1>
 <p>Nie wpisano żadnej frazy. Aby wyszukać książki, skorzystaj z wyszukiwarki obok.</p>

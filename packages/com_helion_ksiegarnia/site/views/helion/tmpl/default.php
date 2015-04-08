@@ -1,10 +1,11 @@
 <?php
+
+/**
+ * @todo spis tresci
+ */
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
-// dodaj css
-$document = JFactory::getDocument();
-$document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'helion'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'helion.css');
 
 $db =& JFactory::getDbo();
 
@@ -36,9 +37,19 @@ if(!last_update || $last_update <= (time() - 86400)) {
     curl_setopt($ch, CURLOPT_URL, $external);
     $out = curl_exec($ch);
     curl_close($ch);
-
-    $xml = simplexml_load_string($out);
     
+    /*
+    $spisy = "http://" . $ksiegarnia . ".pl/xml/spisy.xml";
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_URL, $spisy);
+    $sp = curl_exec($ch);
+    curl_close($ch);
+
+    $toc = simplexml_load_string($sp);
+    */
     foreach($xml->lista->ksiazka as $ksiazka) {
         $ks = new stdClass();
         $ks->id = null;
@@ -61,6 +72,15 @@ if(!last_update || $last_update <= (time() - 86400)) {
         $ks->nowosc = (string) $ksiazka->nowosc;
         $ks->opis = (string) $ksiazka->opis;
         $ks->datawydania = (string) $ksiazka->datawydania;
+        /*
+        foreach($toc->lista->ksiazka as $t){
+            
+            if(strtolower($t->ident) == strtolower($ksiazka->ident)){
+                $ks->spis_tresci = (string) $t->spis;
+                break;
+            }
+            
+        }*/
         
         foreach($ksiazka->tytul as $tytul) {
             if($tytul->attributes()->language == "polski") {

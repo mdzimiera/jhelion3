@@ -2,10 +2,6 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// dodaj css
-$document = JFactory::getDocument();
-$document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'kategoria'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'kategoria.css');
-
 $kategoria = JRequest::getInt('id');
 
 $db =& JFactory::getDbo();

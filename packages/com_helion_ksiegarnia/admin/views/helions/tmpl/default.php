@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @todo spis tresci
+ */
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
 
@@ -10,8 +15,8 @@ $xmlprodukty = true;
 $xmlkategorie = true;
 $xmlserie = true;
 
-switch(JRequest::getVar('action')) {
-    case 'save':
+    if(JRequest::getVar('save')){
+
         $partner_id = JRequest::getString('partner_id');
         $ksiegarnia = JRequest::getString('ksiegarnia');
         $kategorie_w_tresci = JRequest::getString('kategorie_w_tresci');
@@ -64,8 +69,8 @@ switch(JRequest::getVar('action')) {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_URL, $external);
         $out = curl_exec($ch);
-        curl_close($ch);
-
+        curl_close($ch);        
+        
         if(($xml = simplexml_load_string($out)) !== false){
 
             foreach($xml->lista->ksiazka as $ksiazka) {
@@ -90,7 +95,7 @@ switch(JRequest::getVar('action')) {
                 $ks->nowosc = (string) $ksiazka->nowosc;
                 $ks->opis = (string) $ksiazka->opis;
                 $ks->datawydania = (string) $ksiazka->datawydania;
-
+                
                 foreach($ksiazka->tytul as $tytul) {
                     if($tytul->attributes()->language == "polski") {
                         $ks->tytul = (string) $tytul;
@@ -125,10 +130,14 @@ switch(JRequest::getVar('action')) {
         /**
          * end - dodaj na nowo pozycje
          */
-        
+    }
+    
+    if(JRequest::getVar('categories')){
         /**
          * start - dodaj kategorie
          */
+        $ksiegarnia = JRequest::getString('ksiegarnia');
+        
         $query = "DELETE FROM #__helion_config WHERE meta = ".$db->quote($ksiegarnia.'_kategorie').";";
         $db->setQuery($query);
         $db->query();
@@ -174,16 +183,19 @@ switch(JRequest::getVar('action')) {
         /**
          * end - dodaj kategorie
          */
-        
+    }
+    if(JRequest::getVar('series')){
         /**
          * start - dodaj serie
          */
+        $ksiegarnia = JRequest::getString('ksiegarnia');
+         
         $query = "DELETE FROM #__helion_config WHERE meta = ".$db->quote($ksiegarnia.'_serie').";";
         $db->setQuery($query);
         $db->query();
         
         $external = "http://" . $ksiegarnia . ".pl/plugins/new/xml/lista-serie.cgi";
-    
+        
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -212,14 +224,15 @@ switch(JRequest::getVar('action')) {
         /**
          * end - dodaj serie
          */
+    }
+
+    if(JRequest::getVar('toc')){
         
-        break;
-    case 'reset':
         
-        break;
-    default:
-        break;
-}
+    }
+   
+    if(JRequest::getVar('reset')){
+    }
 
 $query = "SELECT value FROM #__helion_config WHERE meta = 'ksiegarnia'";
 $db->setQuery($query);
@@ -287,7 +300,9 @@ $wyszukiwarka_w_tresci = $db->loadResult();
         </tr>
     </table>
     <br/>
-    <p><input type="submit" value="Zapisz ustawienia" class="helion_sb" /></p>
+    <p><input type="submit" value="Zapisz ustawienia" class="helion_sb" name="save"/></p>
+    <p><input type="submit" value="Aktualizuj kategorie" class="helion_sb" name="categories"/></p>
+    <p><input type="submit" value="Aktualizuj serie" class="helion_sb" name="series"/></p>
     <input type="hidden" name="option" value="com_helion" />
     <input type="hidden" name="action" value="save" />
 </form>

@@ -22,6 +22,9 @@ class HelionViewKategoria extends JViewLegacy
 			//return false;
 		//}
  
+                $document = JFactory::getDocument();
+                $document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'kategoria'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'kategoria.css');
+            
 		// Display the view
 		parent::display($tpl);
 	}

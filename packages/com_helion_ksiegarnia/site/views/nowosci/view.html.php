@@ -22,6 +22,8 @@ class HelionViewNowosci extends JViewLegacy
 			//return false;
 		//}
  
+                $document = JFactory::getDocument();
+                $document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'nowosci'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'nowosci.css');
 		// Display the view
 		parent::display($tpl);
 	}

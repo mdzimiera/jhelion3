@@ -13,7 +13,9 @@ class HelionViewBestsellery extends JViewLegacy
 	// Overwriting JView display method
 	function display($tpl = null) 
 	{
-		parent::display($tpl);
+            $document = JFactory::getDocument();
+            $document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'bestsellery'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'bestsellery.css');
+            parent::display($tpl);
 	}
 }
 

@@ -22,6 +22,8 @@ class HelionViewSerie extends JViewLegacy
 			//return false;
 		//}
  
+                $document = JFactory::getDocument();
+                $document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'serie'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'serie.css');
 		// Display the view
 		parent::display($tpl);
 	}

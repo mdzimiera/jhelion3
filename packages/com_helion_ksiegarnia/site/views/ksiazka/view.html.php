@@ -22,7 +22,9 @@ class HelionViewKsiazka extends JViewLegacy
 			//return false;
 		//}
  
-		// Display the view
+                $document = JFactory::getDocument();
+                $document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'ksiazka'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'ksiazka.css');
+                // Display the view
 		parent::display($tpl);
 	}
 }

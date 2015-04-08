@@ -33,6 +33,7 @@ CREATE TABLE `#__helion` (
     `kategorie` text NULL,
     `seriewydawnicze` text NULL,
     `serietematyczne` text NULL,
+    `spis_tresci` text NULL,
    PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 

@@ -2,10 +2,6 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// dodaj css
-$document = JFactory::getDocument();
-$document->addStyleSheet('components'.DIRECTORY_SEPARATOR.'com_helion'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'serie'.DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'serie.css');
-
 $seria = JRequest::getInt('id');
 
 $db =& JFactory::getDbo();
