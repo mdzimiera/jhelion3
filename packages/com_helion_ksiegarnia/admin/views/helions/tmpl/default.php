@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted Access');
 
 JToolBarHelper::title(   JText::_( 'Helion - Program Partnerski' ), 'generic.png' );
 
-$db =& JFactory::getDBO();
+$db = JFactory::getDBO();
 
 $xmlprodukty = true;
 $xmlkategorie = true;
@@ -227,8 +227,31 @@ $xmlserie = true;
     }
 
     if(JRequest::getVar('toc')){
+        $ksiegarnia = JRequest::getString('ksiegarnia');
+
+        $spisy = "http://" . $ksiegarnia . ".pl/xml/spisy.xml";
+    
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_URL, $spisy);
+        $sp = curl_exec($ch);
+        curl_close($ch);
+
+        $toc = simplexml_load_string($sp);
         
+        $ks = new stdClass();
         
+        foreach($toc->lista->ksiazka as $t){
+            
+            $ks->ident = (string) $t->ident;
+            $ks->spis_tresci = (string) $t->spis;
+        
+
+        }
+        
+        $db->insertObject('#__helion', $ks, 'ident');
+    
     }
    
     if(JRequest::getVar('reset')){
@@ -287,6 +310,7 @@ $wyszukiwarka_w_tresci = $db->loadResult();
                     <option value="septem" <?php if($ksiegarnia == 'septem') echo 'selected="selected"'; ?>>Septem</option>
                     <option value="ebookpoint" <?php if($ksiegarnia == 'ebookpoint') echo 'selected="selected"'; ?>>Ebookpoint</option>
                     <option value="bezdroza" <?php if($ksiegarnia == 'bezdroza') echo 'selected="selected"'; ?>>Bezdroża</option>
+                    <option value="videopoint" <?php if($ksiegarnia == 'videopoint') echo 'selected="selected"'; ?>>Videopoint</option>
                 </select>
             </td>
         </tr>
@@ -303,6 +327,7 @@ $wyszukiwarka_w_tresci = $db->loadResult();
     <p><input type="submit" value="Zapisz ustawienia" class="helion_sb" name="save"/></p>
     <p><input type="submit" value="Aktualizuj kategorie" class="helion_sb" name="categories"/></p>
     <p><input type="submit" value="Aktualizuj serie" class="helion_sb" name="series"/></p>
+    <p><input type="submit" value="Aktualizuj spis treści" class="helion_sb" name="toc"/></p>
     <input type="hidden" name="option" value="com_helion" />
     <input type="hidden" name="action" value="save" />
 </form>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.1" method="upgrade">
+<extension type="module" version="3.4" method="upgrade">
     <name>Helion Kategorie</name>
     <creationDate>March 2014</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.1.2</version>
+    <version>3.4.5</version>
     <description>Moduł towarzyszący Księgarni - wyświetla listę kategorii</description>
     <files>
         <filename>mod_helion_kategorie.xml</filename>
@@ -30,13 +30,15 @@
 					<option value="septem">Septem</option>
 					<option value="ebookpoint">Ebookpoint</option>
                                         <option value="bezdroza">Bezdroża</option>
+                                        <option value="videopoint">Videopoint</option>
 				</field>
 				<field
                     name="ksiegarnia_link"
                     type="text"
                     default=""
                     label="Link do księgarni:"
-                    description="Adres URL będący ścieżką do strony głównej księgarni na stronie, np. http://www.strona.pl/index.php/component/helion" />
+                    description="Adres URL będący ścieżką do strony głównej księgarni na stronie, np. http://www.strona.pl/index.php/component/helion" 
+                    hint="http://www.strona.pl/index.php/component/helion" />
 			</fieldset>
 		</fields>
 	</config>

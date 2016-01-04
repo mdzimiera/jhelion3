@@ -2,7 +2,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-$db =& JFactory::getDBO();
+$db = JFactory::getDBO();
 $query = "SELECT value FROM #__helion_config WHERE meta = 'ksiegarnia'";
 $db->setQuery($query);
 $ksiegarnia = $db->loadResult();

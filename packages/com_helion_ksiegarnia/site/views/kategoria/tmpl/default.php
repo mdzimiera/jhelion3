@@ -4,7 +4,7 @@ defined('_JEXEC') or die('Restricted access');
 
 $kategoria = JRequest::getInt('id');
 
-$db =& JFactory::getDbo();
+$db = JFactory::getDbo();
 
 $cyfra = "8";
 $query = "SELECT value FROM #__helion_config WHERE meta = 'ksiegarnia'";

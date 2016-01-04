@@ -1,7 +1,7 @@
 <?php
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-$db =& JFactory::getDBO();
+$db = JFactory::getDBO();
 
 $cyfra = "82";
 
@@ -22,6 +22,7 @@ $db->setQuery($query);
 $ksiazki = $db->loadAssocList();
 
 $ksiazka = $ksiazki[0];
+$nowosc = $bestseller = "";
 
 if(!$ksiazka) {
     echo "<p>Nie można było pobrać danych na temat tej książki.</p>";
@@ -101,16 +102,11 @@ if($wyszukiwarka_w_tresci) {
                 </div>
             <?php } ?>
         <?php echo JHtml::_('bootstrap.endTab');?> 
-    
-        <?php echo JHtml::_('bootstrap.addTab', 'ID-Tabs-J31-Group', 'tab2_j31_id', JText::_('Szczegóły')); ?> 
-            <ul class="helion_details">
-                <?php if($ksiazka['tytul_orig']):?><li><b>Tytuł oryginału:</b> <?php echo $ksiazka['tytul_orig']?></li><?php endif;?>
-                <?php if($ksiazka['tlumacz']):?><li><b>Tłumaczenie:</b> <?php echo $ksiazka['tlumacz']?></li><?php endif;?>
-                <?php if($ksiazka['isbn']):?><li><b>Isbn <?php if(preg_match('/\_ebook/i', $ksiazka['ident'])):?>ebooka<?php else:?>książki drukowanej<?php endif;?>:</b> <?php echo $ksiazka['isbn']?></li><?php endif;?>
-                <?php if($ksiazka['datawydania']):?><li><b>Data wydania <?php if(preg_match('/\_ebook/i', $ksiazka['ident'])):?>ebooka<?php else:?>książki drukowanej<?php endif;?>:</b> <?php echo $ksiazka['datawydania']?></li><?php endif;?>
-                <li><b>Czytaj:</b> <a href="http://<?php echo $ksiegarnia?>.pl/ksiazki/<?php echo str_replace('_ebook', '', $ksiazka['ident'])?>.htm#spis-tresci" target="_blank" title="">spis treści</a></li>
-            </ul>
+
+        <?php echo JHtml::_('bootstrap.addTab', 'ID-Tabs-J31-Group', 'tab2_j31_id', JText::_('Spis treści')); ?> 
+        <p>Content of the second tab.</p> 
         <?php echo JHtml::_('bootstrap.endTab');?> 
+
     <?php echo JHtml::_('bootstrap.endTabSet');?>
       
 </div>

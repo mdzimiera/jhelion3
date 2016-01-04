@@ -16,7 +16,7 @@ if(empty($fraza)) { ?>
 <div class="wyszukiwarka_clear"></div>
 <?php return false; }
 
-$db =& JFactory::getDBO();
+$db = JFactory::getDBO();
 
 ?>
 <h1>Księgarnia - Wyszukano frazę: <em>"<?php echo $fraza; ?>"</em></h1>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.1" method="upgrade">
+<extension type="module" version="3.4" method="upgrade">
     <name>Helion Losowa Książka</name>
     <creationDate>March 2014</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.1.2</version>
+    <version>3.4.5</version>
     <description>Moduł wyświetlający losowo jedną z książek spośród wskazanych przez ciebie pozycji.</description>
     <files>
         <filename>mod_helion_losowa_ksiazka.xml</filename>
@@ -69,6 +69,12 @@ Jeśli nie chcesz korzystać z tego parametru, pozostaw puste pole." />
                     default=""
                     label="Bezdroża:"
                     description="5-6 znakowe identyfikatory książek oddzielone spacjami, przecinkami lub średnikami. Znajdziesz je na końcu adresów URL w księgarniach. Np. jeśli adres to http://helion.pl/ksiazki/wstep-do-html5-i-css3-bartosz-danowski,wshtcs.htm - identyfikatorem będzie wshtcs" />
+                <field
+                    name="videopoint"
+                    type="textarea"
+                    default=""
+                    label="Videopoint:"
+                    description="5-6 znakowe identyfikatory kursów oddzielone spacjami, przecinkami lub średnikami. Znajdziesz je na końcu adresów URL w księgarniach. Np. jeśli adres to http://videopoint.pl/kurs/asp-net-mvc-kurs-video-poziom-pierwszy-programowanie-aplikacji-internetowych-marek-stabla,aspnet.htm - identyfikatorem będzie aspnet" />
 		<field
                     name="okladka"
                     type="list"

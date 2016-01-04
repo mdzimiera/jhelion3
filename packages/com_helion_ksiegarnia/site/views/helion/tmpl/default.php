@@ -7,7 +7,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-$db =& JFactory::getDbo();
+$db = JFactory::getDbo();
 
 $cyfra = "10";
 

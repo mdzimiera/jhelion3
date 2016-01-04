@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.1" method="upgrade">
+<extension type="module" version="3.4" method="upgrade">
     <name>Helion Serie</name>
     <creationDate>March 2015</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.1.2</version>
+    <version>3.4.5</version>
     <description>Moduł towarzyszący Księgarni - wyświetla listę serii</description>
     <files>
         <filename>mod_helion_serie.xml</filename>
@@ -30,6 +30,7 @@
 					<option value="septem">Septem</option>
 					<option value="ebookpoint">Ebookpoint</option>
                                         <option value="bezdroza">Bezdroża</option>
+                                        <option value="videopoint">Videopoint</option>
 				</field>
 				<field
                     name="ksiegarnia_link"

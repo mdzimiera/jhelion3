@@ -2,7 +2,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-$db =& JFactory::getDBO();
+$db = JFactory::getDBO();
 
 ?>
 <h1>Księgarnia - Nowości</h1>

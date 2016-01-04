@@ -11,7 +11,7 @@ $document->addScript('modules/mod_helion_kategorie/js/mod_helion_kategorie.js');
 $ksiegarnia = $params->get('ksiegarnia');
 $link = $params->get('ksiegarnia_link');
 
-$db =& JFactory::getDbo();
+$db = JFactory::getDbo();
 
 $query = "SELECT value FROM #__helion_config WHERE meta = 'ksiegarnia'";
 $db->setQuery($query);

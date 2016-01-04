@@ -1,6 +1,6 @@
 <?php // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
-$db =& JFactory::getDbo();
+$db = JFactory::getDbo();
 
 // dodaj css
 $document = JFactory::getDocument();
@@ -54,7 +54,7 @@ $dokoszyka = 'http://' . $ksiegarnia . '.pl/add/' . $partner_id . '/' . (($cyfra
     <div class="info">
         <h4 class="tytul"><a href="<?php echo $url; ?>" title="<?php echo $tytul?>"><?php echo $tytul ?></a></h4>
     </div>
-    <div class="okladka" style="width: <?php echo $szerokosc; ?>px;">
+    <div class="okladka" style="width: <?php echo (is_array($szerokosc) && isset($szerokosc[0])) ? $szerokosc[0] : $szerokosc; ?>px;">
         <a href="<?php echo $url; ?>" target="_blank" title="<?php echo $tytul?>"><img src="http://<?php echo $ksiegarnia; ?>.pl/okladki/<?php echo $okladka; ?>/<?php echo $ident; ?>.jpg" alt="<?php echo $tytul; ?>" /></a>
     </div>
     <div class="info">

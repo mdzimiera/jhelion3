@@ -23,6 +23,7 @@ class modHelionBestselleryHelper
                         9 => 'Sensus',
                         11 => 'Bezdroża obce',
                         13 => 'Ebookpoint',
+                        17 => 'Videopoint',
                         );
     
     private static $_type = array(
@@ -30,6 +31,7 @@ class modHelionBestselleryHelper
                         2 => 'Ebook',
                         3 => 'Audiobook mp3',
                         4 => 'Audiocd mp3',
+                        8 => 'Wideokurs',
                         );
     
     public static function getStatus($status){
@@ -59,6 +61,8 @@ class modHelionBestselleryHelper
             $type = 3;
         }elseif(preg_match('/\_3$/i', $ident)){
             $type = 4;
+        }elseif(preg_match('/\_w$/i', $ident)){
+            $type = 8;
         }else{
             $type = 1;
         }
