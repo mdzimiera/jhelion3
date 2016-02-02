@@ -50,56 +50,60 @@ if(!last_update || $last_update <= (time() - 86400)) {
 
     $toc = simplexml_load_string($sp);
     */
-    foreach($xml->lista->ksiazka as $ksiazka) {
-        $ks = new stdClass();
-        $ks->id = null;
-        $ks->ksiegarnia = $ksiegarnia;
-        $ks->ident = strtolower($ksiazka->ident);
-        $ks->isbn = (string) $ksiazka->isbn;
-        $ks->link = (string) $ksiazka->link;
-        $ks->autor = (string) $ksiazka->autor;
-        $ks->tlumacz = (string) $ksiazka->tlumacz;
-        $ks->status = (string) $ksiazka->status;
-        $ks->cena = (string) $ksiazka->cena;
-        $ks->cenadetaliczna = (string) $ksiazka->cenadetaliczna;
-        $ks->znizka = (string) $ksiazka->znizka;
-        $ks->marka = (string) $ksiazka->marka;
-        $ks->nazadanie = (string) $ksiazka->nazadanie;
-        $ks->format = (string) $ksiazka->format;
-        $ks->liczbastron = (string) $ksiazka->liczbastron;
-        $ks->oprawa = (string) $ksiazka->oprawa;
-        $ks->bestseller = (string) $ksiazka->bestseller;
-        $ks->nowosc = (string) $ksiazka->nowosc;
-        $ks->opis = (string) $ksiazka->opis;
-        $ks->datawydania = (string) $ksiazka->datawydania;
-        /*
-        foreach($toc->lista->ksiazka as $t){
-            
-            if(strtolower($t->ident) == strtolower($ksiazka->ident)){
-                $ks->spis_tresci = (string) $t->spis;
-                break;
+    if(($xml = simplexml_load_string($out, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE)) !== false){
+        foreach($xml->lista->ksiazka as $ksiazka) {
+            $ks = new stdClass();
+            $ks->id = null;
+            $ks->ksiegarnia = $ksiegarnia;
+            $ks->ident = strtolower($ksiazka->ident);
+            $ks->isbn = (string) $ksiazka->isbn;
+            $ks->link = (string) $ksiazka->link;
+            $ks->autor = (string) $ksiazka->autor;
+            $ks->tlumacz = (string) $ksiazka->tlumacz;
+            $ks->status = (string) $ksiazka->status;
+            $ks->cena = (string) $ksiazka->cena;
+            $ks->cenadetaliczna = (string) $ksiazka->cenadetaliczna;
+            $ks->znizka = (string) $ksiazka->znizka;
+            $ks->marka = (string) $ksiazka->marka;
+            $ks->nazadanie = (string) $ksiazka->nazadanie;
+            $ks->format = (string) $ksiazka->format;
+            $ks->liczbastron = (string) $ksiazka->liczbastron;
+            $ks->oprawa = (string) $ksiazka->oprawa;
+            $ks->bestseller = (string) $ksiazka->bestseller;
+            $ks->nowosc = (string) $ksiazka->nowosc;
+            $ks->opis = (string) $ksiazka->opis;
+            $ks->datawydania = (string) $ksiazka->datawydania;
+            /*
+            foreach($toc->lista->ksiazka as $t){
+
+                if(strtolower($t->ident) == strtolower($ksiazka->ident)){
+                    $ks->spis_tresci = (string) $t->spis;
+                    break;
+                }
+
+            }*/
+
+            foreach($ksiazka->tytul as $tytul) {
+                if($tytul->attributes()->language == "polski") {
+                    $ks->tytul = (string) $tytul;
+                } else {
+                    $ks->tytul_orig = (string) $tytul;
+                }
             }
-            
-        }*/
-        
-        foreach($ksiazka->tytul as $tytul) {
-            if($tytul->attributes()->language == "polski") {
-                $ks->tytul = (string) $tytul;
-            } else {
-                $ks->tytul_orig = (string) $tytul;
+
+            $kategorie = array();
+            $ids = array();
+
+            if($ksiazka->serietematyczne->seriatematyczna){
+                foreach($ksiazka->serietematyczne->seriatematyczna as $kategoria) {
+                    $ids[] = (int) $kategoria->attributes()->id;
+                }
             }
+
+            $ks->kategorie = "," . join(",", $ids) . ",";
+
+            $db->insertObject('#__helion', $ks, 'id');
         }
-        
-        $kategorie = array();
-        $ids = array();
-        
-        foreach($ksiazka->serietematyczne->seriatematyczna as $kategoria) {
-            $ids[] = (int) $kategoria->attributes()->id;
-        }
-        
-        $ks->kategorie = "," . join(",", $ids) . ",";
-        
-        $db->insertObject('#__helion', $ks, 'id');
     }
     
     $query = "UPDATE #__helion_status SET update_time = " .$db->quote(time()) . " WHERE ksiegarnia = " . $db->quote($ksiegarnia) . ";";

@@ -71,7 +71,7 @@ $xmlserie = true;
         $out = curl_exec($ch);
         curl_close($ch);        
         
-        if(($xml = simplexml_load_string($out)) !== false){
+        if(($xml = simplexml_load_string($out, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE)) !== false){
 
             foreach($xml->lista->ksiazka as $ksiazka) {
                 $ks = new stdClass();
@@ -106,15 +106,18 @@ $xmlserie = true;
 
                 $kategorie = array();
                 $ids = array();
-
-                foreach($ksiazka->serietematyczne->seriatematyczna as $kategoria) {
-                    $ids[] = (int) $kategoria->attributes()->id;
+                if($ksiazka->serietematyczne->seriatematyczna){
+                    foreach($ksiazka->serietematyczne->seriatematyczna as $kategoria) {
+                        $ids[] = (int) $kategoria->attributes()->id;
+                    }
                 }
                 $ks->kategorie = "," . join(",", $ids) . ",";
                 
                 $ids = array();
-                foreach($ksiazka->seriewydawnicze->seriawydawnicza as $seria) {
-                    $ids[] = (int) $seria->attributes()->id;
+                if($ksiazka->seriewydawnicze->seriawydawnicza){
+                    foreach($ksiazka->seriewydawnicze->seriawydawnicza as $seria) {
+                        $ids[] = (int) $seria->attributes()->id;
+                    }
                 }
                 $ks->seriewydawnicze = ",".join(",", $ids).",";
 
