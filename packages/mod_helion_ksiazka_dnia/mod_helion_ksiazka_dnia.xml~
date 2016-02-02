@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.1" method="upgrade">
+<extension type="module" version="3.4" method="upgrade">
     <name>Helion Książka Dnia</name>
+    <creationDate>March 2014</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.1.1</version>
+    <version>3.4.5</version>
     <description>Moduł wyświetlający książkę dnia (w promocji) z dowolnej księgarni GW Helion</description>
     <files>
         <filename>mod_helion_ksiazka_dnia.xml</filename>
@@ -28,6 +29,7 @@
 					<option value="septem">Septem</option>
 					<option value="ebookpoint">Ebookpoint</option>
                                         <option value="bezdroza">Bezdroża</option>
+                                        <option value="videopoint">Videopoint</option>
 		</field>
                 <field
                     name="partner"

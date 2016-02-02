@@ -3,7 +3,7 @@
     <name>Helion Książka Dnia</name>
     <creationDate>March 2014</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.4.5</version>
+    <version>3.4.6</version>
     <description>Moduł wyświetlający książkę dnia (w promocji) z dowolnej księgarni GW Helion</description>
     <files>
         <filename>mod_helion_ksiazka_dnia.xml</filename>

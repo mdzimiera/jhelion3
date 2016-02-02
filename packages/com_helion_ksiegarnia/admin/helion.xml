@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.1" method="upgrade">
+<extension type="component" version="3.4" method="upgrade">
 	<name>Helion</name>
 	<creationDate>March 2014</creationDate>
 	<author>Dzimiera Marek</author>
@@ -7,7 +7,7 @@
 	<authorUrl></authorUrl>
 	<copyright>Copyright (C) Grupa Wydawnicza Helion 2014</copyright>
 	<license>GPL2</license>
-	<version>3.1.3</version>
+	<version>3.4.6</version>
 	<description>Otwórz własną księgarnię i zarabiaj z Programem Partnerskim GW Helion!</description>
 	<install>
 		<sql>
