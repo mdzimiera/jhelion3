@@ -37,7 +37,9 @@ if(!empty($kategorie)) {
                 echo '</ul></li>';
             }
         }else{
-            echo '<li class="mod_nadkategorie_li"><a href="' . $link . "?view=kategoria&id=" . $id . '" title="'. $nad['nad'] .'">' . $nad['nad'] . '</a></li>';
+            if(isset($nad['nad'])){
+                echo '<li class="mod_nadkategorie_li"><a href="' . $link . "?view=kategoria&id=" . $id . '" title="'. $nad['nad'] .'">' . $nad['nad'] . '</a></li>';
+            }
         }
     }
     

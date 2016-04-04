@@ -3,7 +3,7 @@
     <name>Helion Kategorie</name>
     <creationDate>March 2014</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.4.6</version>
+    <version>3.4.7</version>
     <description>Moduł towarzyszący Księgarni - wyświetla listę kategorii</description>
     <files>
         <filename>mod_helion_kategorie.xml</filename>

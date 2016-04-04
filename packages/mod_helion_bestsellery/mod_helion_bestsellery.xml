@@ -3,7 +3,7 @@
     <name>Helion Bestsellery</name>
     <creationDate>March 2014</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.4.6</version>
+    <version>3.4.7</version>
     <description>Moduł losowo wyświetlający jeden z bestsellerów z dowolnej księgarni GW Helion</description>
     <files>
         <filename>mod_helion_bestsellery.xml</filename>

@@ -23,7 +23,7 @@ $query = "SELECT update_time FROM #__helion_status WHERE ksiegarnia = " . $db->q
 $db->setQuery($query);
 $last_update = $db->loadResult();
 
-if(!last_update || $last_update <= (time() - 86400)) {
+if(!$last_update || $last_update <= (time() - 86400)) {
     $query = "DELETE FROM #__helion WHERE ksiegarnia = " . $db->quote($ksiegarnia) . ";";
     $db->setQuery($query);
     $db->query();
@@ -115,7 +115,7 @@ $query = "SELECT update_time FROM #__helion_status WHERE ksiegarnia = " . $db->q
 $db->setQuery($query);
 $last_update = $db->loadResult();
 
-if(!last_update || $last_update <= (time() - 86400)) {
+if(!$last_update || $last_update <= (time() - 86400)) {
     $query = "DELETE FROM #__helion_config WHERE meta = " . $db->quote($ksiegarnia . '_kategorie') . ";";
     $db->setQuery($query);
     $db->query();
@@ -193,9 +193,11 @@ if($kategorie_w_tresci) {
         $nadrzedne = $kategorie['nad'];
 
         echo '<ul class="helion_kategorie"><li>Kategorie:</li>';
-
-        foreach($nadrzedne as $id => $nazwa) {
-            echo '<li><a href="' . JURI::current() . "?view=kategoria&id=" . $id . '">' . $nazwa . '</a></li>';
+        
+        if(is_array($nadrzedne) && !empty($nadrzedne)){
+            foreach($nadrzedne as $id => $nazwa) {
+                echo '<li><a href="' . JURI::current() . "?view=kategoria&id=" . $id . '">' . $nazwa . '</a></li>';
+            }
         }
 
         echo '<li><a href="' . JURI::current() . "?view=nowosci" . '">Nowości</a></li>';
@@ -228,7 +230,7 @@ foreach($result as $ksiazka) {
 ?>
     <li>    
         <div class="helion_ksiazka">
-            <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['title']?>"><img src="http://helion.pl/okladki/90x119/<?php echo preg_replace('/\_ebook$/i', '', $ident); ?>.jpg" /></a>
+            <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><img src="http://helion.pl/okladki/90x119/<?php echo preg_replace('/\_ebook$/i', '', $ident); ?>.jpg" /></a>
             <div class="ksiazka_info">
                 <h3><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $this->trunc($ksiazka['tytul'], 5); ?></a></h3>
                 <p class="autor">Autor: <?php $a = explode(",", $ksiazka['autor']); if(count($a) == 1) { echo $a[0]; } else { echo $a[0] . " i in."; }; ?></p>
