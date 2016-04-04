@@ -5,7 +5,7 @@
  */
 /**
  * Author:  marcus
- * Created: 2016-01-04
+ * Created: 2016-04-04
  */
 
 CREATE TABLE IF NOT EXISTS `#__helion` (
@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS `#__helion` (
     `kategorie` text NULL,
     `seriewydawnicze` text NULL,
     `serietematyczne` text NULL,
-    `spis_tresci` text NULL,
    PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
@@ -62,5 +61,6 @@ INSERT IGNORE INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('hel
 INSERT IGNORE INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion_kategorie', '1'), ('onepress_kategorie', '1'), ('sensus_kategorie', '1'), ('septem_kategorie', '1'), ('bezdroza_kategorie', '1'), ('ebookpoint_kategorie', '1'), ('videopoint_kategorie', '1');
 INSERT IGNORE INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion_serie', '1'), ('onepress_serie', '1'), ('sensus_serie', '1'), ('septem_serie', '1'), ('bezdroza_serie', '1'), ('ebookpoint_serie', '1'), ('videopoint_serie', '1');
 
+ALTER TABLE `#__helion` ADD COLUMN `spis_tresci` text NULL;
 
 
