@@ -62,7 +62,6 @@ if(!$last_update || $last_update <= (time() - 86400)) {
     $db->setQuery($query);
     $db->query();
 }
-    
 if($kategoria) {
     $query = "SELECT value FROM #__helion_config WHERE meta = " . $db->quote($ksiegarnia . '_kategorie') . ";";
     $db->setQuery($query);
@@ -74,7 +73,7 @@ if($kategoria) {
             $cat_name = '<a href="' . JURI::current() . '">Księgarnia</a> &gt; ' . $kategorie[$kategoria]['nad'];
         } else {
             foreach($kategorie as $key => $value){
-                if(array_key_exists($kategoria, $value['pod'])){
+                if(isset($value['pod']) && is_array($value['pod']) && array_key_exists($kategoria, $value['pod'])){
                     $cat_name = '<a href="' . JURI::current() . '">Księgarnia</a> &gt; <a href="' . JURI::current() . '?view=kategoria&id=' . $key . '">' . $value['nad'] . '</a> &gt; ' . $value['pod'][$kategoria];
                     break;
                 }
@@ -106,7 +105,7 @@ if($wyszukiwarka_w_tresci) {
 
 $subkategorie = array();
 $ebooki = false; 
-if($kategorie[$kategoria]['nad'] == 'eBooki'){
+if(isset($kategorie[$kategoria]) && $kategorie[$kategoria]['nad'] == 'eBooki'){
     
     $ebooki = true;
     

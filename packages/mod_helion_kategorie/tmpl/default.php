@@ -13,6 +13,10 @@ $link = $params->get('ksiegarnia_link');
 
 $db = JFactory::getDbo();
 
+$jinput = JFactory::getApplication()->input;
+$view_param = $jinput->get('view', 'kategoria', 'word');
+$id_param = $jinput->get('id', null, 'integer');
+
 $query = "SELECT value FROM #__helion_config WHERE meta = 'ksiegarnia'";
 $db->setQuery($query);
 $ksiegarnia = $db->loadResult();
@@ -30,7 +34,7 @@ if(!empty($kategorie)) {
         if(isset($nad['pod']) && is_array($nad['pod']) && !empty($nad['pod'])){
             echo '<li class="mod_nadkategorie">'. $nad['nad'] .'</li>';
             if(is_array($nad['pod']) && !empty($nad['pod'])){
-                echo '<li class="mod_podkategorie_li"><ul class="mod_podkategorie">';
+                echo '<li class="mod_podkategorie_li"><ul class="mod_podkategorie" style="' . ((array_key_exists($id_param, $nad['pod'])) ? "display: block;" : "") . '">';
                 foreach($nad['pod'] as $pid => $pod){
                     echo '<li><a href="' . $link . "?view=kategoria&id=" . $pid . '" title="'. $pod .'">' . $pod . '</a></li>';
                 }
