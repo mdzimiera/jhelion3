@@ -119,6 +119,7 @@ if(!empty($ksiegarnie)) {
                         $ean = modHelionLosowaKsiazkaHelper::ISBNtoEAN($ksiazka['isbn']);
                         $isbn = $ksiazka['isbn'];
                         $marka = modHelionLosowaKsiazkaHelper::getBrand($ksiazka['marka']);
+                        $typ = modHelionLosowaKsiazkaHelper::getTypeByIdent($ident);
 		} else {
 			echo '<p>Nie udało się pobrać danych o książce.</p>';
 			return false;
@@ -135,29 +136,62 @@ if(!empty($ksiegarnie)) {
         <h4 class="tytul"><a href="<?php echo $url; ?>" title="<?php echo $tytul?>"><?php echo $tytul ?></a></h4>
     </div>
     <div class="okladka" style="width: <?php echo (is_array($szerokosc) && isset($szerokosc[0])) ? $szerokosc[0] : $szerokosc; ?>px;">
-        <a href="<?php echo $url; ?>" target="_blank" title="<?php echo $tytul?>"><img src="http://<?php echo $ksiegarnia; ?>.pl/okladki/<?php echo $okladka; ?>/<?php echo $ident; ?>.jpg" alt="<?php echo $tytul; ?>" /></a>
+        <a href="<?php echo $url; ?>" target="_blank" title="<?php echo $tytul?>">
+            <img src="https://static01.helion.com.pl/global/okladki/<?php echo $okladka; ?>/<?php echo $ident; ?>.jpg" alt="<?php echo $tytul; ?>" />
+        </a>
     </div>
     <div class="info">
         <ul>
-            <?php if($czy_autor):?><li class="autor"><b>Autor:</b> <?php echo $autor; ?></li><?php endif;?>
-            <?php if($czy_znizka && $znizka > 0):?><li class="znizka"><b>Zniżka:</b> <?php echo $znizka; ?>%</li><?php endif;?>
-            <?php if($czy_cena):?><li class="cena"><b>Cena:</b> 
+            <?php if($czy_autor):?>
+                <li class="autor"><b>Autor:</b> 
+                    <span class="help-block"><?php echo $autor; ?></span>
+                </li>
+            <?php endif;?>
+            <?php if($czy_znizka && $znizka > 0):?>
+                <li class="znizka"><b>Zniżka:</b> 
+                    <span class="help-block"><?php echo $znizka; ?>%</span>
+                </li>
+            <?php endif;?>
+            <?php if($czy_cena):?><li class="cena"><b>Cena:</b>
+                <span class="help-block">
                 <?php if($znizka > 0):?>
-                    <strike><?php echo $cenadetaliczna; ?></strike> <b><?php echo $cena_po_rabacie?> zł</b></li>
+                    <strike><?php echo $cenadetaliczna; ?></strike> <b><?php echo $cena_po_rabacie?> zł</b>
                 <?php else:?>    
                     <?php echo $cenadetaliczna; ?> zł
                 <?php endif;?>
+                </span>
+                </li>
             <?php endif;?>
-            <?php if($czy_marka):?><li class="marka"><b>Marka:</b> <?php echo $marka; ?></li><?php endif;?>
-            <?php if($czy_status):?><li class="status"><b>Status:</b> <?php echo $status; ?></li><?php endif;?>
-            <?php if($czy_typ):?><li class="typ"><b>Typ:</b> <?php echo $typ; ?></li><?php endif;?>
-            <?php if($czy_ean):?><li class="ean"><b>EAN:</b> <?php echo $ean; ?></li><?php endif;?>
-            <?php if($czy_isbn):?><li class="isbn"><b>ISBN:</b> <?php echo $isbn; ?></li><?php endif;?>
+            <?php if($czy_marka):?>
+                <li class="marka"><b>Marka:</b> 
+                    <span class="help-block"><?php echo $marka; ?></span>
+                </li>
+            <?php endif;?>
+            <?php if($czy_status):?>
+                <li class="status"><b>Status:</b> 
+                    <span class="help-block"><?php echo $status; ?></span>
+                </li>
+            <?php endif;?>
+            <?php if($czy_typ):?>
+                <li class="typ"><b>Typ:</b> 
+                    <span class="help-block"><?php echo $typ; ?></span>
+                </li>
+            <?php endif;?>
+            <?php if($czy_ean):?>
+                <li class="ean"><b>EAN:</b> 
+                    <span class="help-block"><?php echo $ean; ?></span>
+                </li>
+            <?php endif;?>
+            <?php if($czy_isbn):?>
+                <li class="isbn"><b>ISBN:</b> 
+                    <span class="help-block"><?php echo $isbn; ?></span>
+                </li>
+            <?php endif;?>
         </ul>
     </div>
     <?php if($cart_status != 0) { ?>
-    <div class="dokoszyka">
-        <a href="<?php echo $dokoszyka; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg" alt="Dodaj <?php echo $tytul; ?> do koszyka" /></a>
+    <div class="helion-box">
+        <a href="<?php echo $dokoszyka; ?>" title="Dodaj <?php echo $tytul; ?> do koszyka" rel="nofollow" target="_blank">Kup teraz</a>
     </div>
     <?php } else { ?>
     <p>Książka chwilowo niedostępna.</p>
