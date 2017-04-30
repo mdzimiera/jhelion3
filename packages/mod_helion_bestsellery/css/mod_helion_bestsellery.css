@@ -9,64 +9,83 @@ and open the template in the editor.
 */
 
 .helion_bestseller {
-    
     /*width: 253px;*/
     text-align: center;
-    font-family: Helvetica,Arial,FreeSans,sans-serif;
+    font-family: canaro,sans-serif;
     color: #444444;
-    
-}
-    
+} 
 .helion_bestseller .okladka {
-
-    margin: 10px auto;
-    
+    margin: 10px auto; 
 }
-
-.helion_bestseller .dokoszyka {
-        
+.helion_bestseller .dokoszyka {        
     width: 138px;
     margin: 10px auto;
-
+}    
+.helion_bestseller .info p {    
+    text-align: center;    
 }
-    
-.helion_bestseller .info p {
-    
+.helion_bestseller ul {       
+    list-style-type: none !important;
     text-align: center;
-    
+    margin: 0 auto !important;
+    padding: 0;  
 }
-
-.helion_bestseller ul {
-        
-    list-style-type: disc !important;
-    text-align: left;
-    margin: 0 0 10px 25px !important;
-    padding: 0;
-    
-}
-
 .helion_bestseller ul li {
-
-    line-height: 20px;
-    
-}
-    
+    line-height: 20px;   
+}    
 .helion_bestseller ul li.tytul{
-
-    text-align: center;
-    
-}
-    
+    text-align: center;    
+}    
 .helion_bestseller h4.tytul a {
-
-    text-decoration: none;
-    
+    text-decoration: none;  
 }
-
 .helion_bestseller h4.tytul a:hover {
-
     text-decoration: none;
     background: none;
     color: #444444;
-    
+}
+.helion_bestseller .helion-box a::after, 
+.helion_bestseller .helion-box a::before {
+    content: " ";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 3px;
+}
+.helion_bestseller .helion-box a {
+    box-shadow: none;
+    background-color: #c0c0c0;
+    border: 1px solid #b1b1b1;
+    border-radius: 4px;
+    padding-left: 50px;
+    padding-right: 20px;
+    font-size: 16px;
+    display: inline-block;
+    height: 100%;
+    line-height: 36px;
+    position: relative;
+    text-decoration: none;
+    color: #000;
+}
+.helion_bestseller .helion-box a:hover {
+    color: #fff;
+    background-color: #e4001e;
+    border: 1px solid #e6001e;
+    border-radius: 4px;
+    box-shadow: none;
+}
+.helion_bestseller .helion-box a:hover:before {
+    opacity:0;
+}
+.helion_bestseller .helion-box a:hover:after {
+    opacity:1;
+}
+.helion_bestseller .helion-box a::before {
+    left: 8px;
+    background: transparent url(https://static01.helion.com.pl/helion/images/helion.svg) no-repeat -426px -321px;
+}
+.helion_bestseller .helion-box a::after {
+    left: 8px;
+    background: transparent url(https://static01.helion.com.pl/helion/images/helion.svg) no-repeat -337px -321px;
+    opacity: 0;
 }
