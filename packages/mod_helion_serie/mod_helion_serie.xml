@@ -37,7 +37,8 @@
                     type="text"
                     default=""
                     label="Link do księgarni:"
-                    description="Adres URL będący ścieżką do strony głównej księgarni na stronie, np. http://www.strona.pl/index.php/component/helion" />
+                    description="Adres URL będący ścieżką do strony głównej księgarni na stronie, np. http://www.strona.pl/index.php/component/helion"
+                    hint="http://www.strona.pl/index.php/component/helion" />
 			</fieldset>
 		</fields>
 	</config>
