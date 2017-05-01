@@ -31,16 +31,8 @@ if(!$ksiazka) {
 
 $url = "http://" . $ksiegarnia . ".pl/add/" . $partner_id . "/" . $cyfra . "/" . $ksiazka['ident'];
 
-if($ksiazka['nowosc'] == "1") {
-    $nowosc = '<img alt="Nowość" src="http://helion.pl/img/nowosc.gif">';
-}
-
-if($ksiazka['bestseller'] == "1") {
-    $bestseller = '<img alt="Bestseller" src="http://helion.pl/img/bestseller.gif">';
-}
-
 ?>
-<h1><?php echo $ksiazka['autor']; ?> - <?php echo $ksiazka['tytul']; ?></h1>
+<h2><?php echo $ksiazka['autor']; ?> - <?php echo $ksiazka['tytul']; ?></h2>
 <?php
 $query = "SELECT value FROM #__helion_config WHERE meta = 'wyszukiwarka_w_tresci'";
 $db->setQuery($query);
@@ -51,24 +43,39 @@ if($wyszukiwarka_w_tresci) {
 <div class="helion_wyszukiwarka">
     <form action="<?php echo JURI::current(); ?>" method="get">
         <input type="hidden" name="view" value="szukaj" />
-        <input type="text" name="fraza" value="<?php echo !empty($fraza) ? $fraza : 'wyszukaj...'; ?>" onclick="this.value = '';"/>
-        <input type="submit" value="Szukaj" />
+        <input type="text" name="fraza" class="input-small" value="<?php echo !empty($fraza) ? $fraza : 'wyszukaj...'; ?>" onclick="this.value = '';"/>
+        <input type="submit" value="Szukaj" class="btn btn-primary btn-small" />
     </form>
 </div>
 <div class="wyszukiwarka_clear"></div>
 <?php } ?>
 
 <div class="helion_ksiazka">
-    <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><img src="http://helion.pl/okladki/181x236/<?php echo preg_replace('/\_ebook$/i', '', $ksiazka['ident']); ?>.jpg" /></a>
+    <div class="helion-cover">
+        <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>">
+            <img src="https://static01.helion.com.pl/global/okladki/181x236/<?php echo preg_replace('/\_ebook$/i', '', $ksiazka['ident']); ?>.jpg" />
+        </a>
+    </div>
     <div class="ksiazka_info">
         <h3 class="tytul"><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $ksiazka['tytul']; ?></a></h3>
-        <p class="autor">Autor: <strong><?php echo $ksiazka['autor']; ?></strong></p>
-        <p class="format">Format: <?php if(preg_match('/\_ebook$/i', $ksiazka['ident'])):?>eBook<?php else:?>Druk<?php endif?></p>
-        <p class="datawydania">Data wydania: <?php echo $ksiazka['datawydania']; ?></p>
-        <p class="stron">Stron: <?php echo $ksiazka['liczbastron']; ?></p>
+        <p class="autor"><b>Autor:</b> 
+            <span class="help-block helion-help-block"><strong><?php echo $ksiazka['autor']; ?></strong></span>
+        </p>
+        <p class="format"><b>Format:</b> <span class="help-block helion-help-block"><strong><?php echo HelionHelper::getTypeByIdent($ksiazka['ident'])?></strong></span></p>
+        <p class="datawydania"><b>Data wydania:</b> <span class="help-block helion-help-block"><strong><?php echo $ksiazka['datawydania']; ?></strong></span></p>
+        <?php if ($ksiazka['liczbastron']):?>
+        <p class="stron"><b>Stron:</b> <span class="help-block helion-help-block"><strong><?php echo $ksiazka['liczbastron']; ?></strong></span></p>
+        <?php endif;?>
         <p class="dostawa">Dostawa: 0,00 zł</p>
         <p class="wysylka">Wysyłka w 24h</p>
-        <p class="nowosc_bestseller"><?php echo $nowosc . " " . $bestseller; ?></p>
+        <ul class="tags">
+            <?php if($ksiazka['nowosc'] == "1"):?>
+            <li class="tag-new">Nowość</li>
+            <?php endif;?>
+            <?php if($ksiazka['bestseller'] == "1"):?>
+            <li class="tag-bestseller">Bestseller</li>
+            <?php endif;?>
+        </ul>
     </div>
     <?php if($ksiazka['status'] != "0") { ?>
     <div class="helion_kup_teraz">
@@ -76,7 +83,11 @@ if($wyszukiwarka_w_tresci) {
             <span class="cena">Cena: <?php echo $ksiazka['cena']; ?> zł</span> 
             <?php if($ksiazka['znizka'] > 0) echo '<br /><span class="znizka">Zniżka: ' . $ksiazka['znizka'] . "%</span>"; ?>
         </p>
-        <p><a href="<?php echo $url; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p>
+        <p>
+            <div class="helion-box">
+                <a href="<?php echo $url; ?>" title="Dodaj '<?php echo $ksiazka['tytul']; ?>' do koszyka" rel="nofollow" target="_blank">Kup teraz</a>
+            </div>
+        </p>
     </div>
     <?php } else { ?>
         <div class="helion_kup_teraz">
@@ -94,7 +105,11 @@ if($wyszukiwarka_w_tresci) {
                     <span class="cena">Cena: <?php echo $ksiazka['cena']; ?> zł</span> 
                     <?php if($ksiazka['znizka'] > 0) echo '<br /><span class="znizka">Zniżka: ' . $ksiazka['znizka'] . "%</span>"; ?>
                 </p>
-                <p><a href="<?php echo $url; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p>
+                <p>
+                    <div class="helion-box">
+                        <a href="<?php echo $url; ?>" title="Dodaj '<?php echo $ksiazka['tytul']; ?>' do koszyka" rel="nofollow" target="_blank">Kup teraz</a>
+                    </div>
+                </p>
             </div>
             <?php } else { ?>
                 <div class="helion_kup_teraz">
@@ -104,7 +119,7 @@ if($wyszukiwarka_w_tresci) {
         <?php echo JHtml::_('bootstrap.endTab');?> 
 
         <?php echo JHtml::_('bootstrap.addTab', 'ID-Tabs-J31-Group', 'tab2_j31_id', JText::_('Spis treści')); ?> 
-        <p>Content of the second tab.</p> 
+        <p></p> 
         <?php echo JHtml::_('bootstrap.endTab');?> 
 
     <?php echo JHtml::_('bootstrap.endTabSet');?>

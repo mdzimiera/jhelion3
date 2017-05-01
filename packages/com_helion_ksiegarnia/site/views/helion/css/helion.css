@@ -10,9 +10,8 @@ and open the template in the editor.
 
 .helion_ksiazka {
      
-    border: 1px solid #555; 
-    /*width: 320px; */
-    height: 148px;
+    border: 1px solid #ccc; 
+    height: 180px;
     margin-right: 10px; 
     margin-bottom: 10px; 
     padding: 10px; 
@@ -46,8 +45,10 @@ ul.novelties li {
     
 .ksiazka_info {
 
-    width: 200px; 
+    width: 200px;
+    height: 180px;
     float: right;
+    position: relative;
     padding-left: 10px;
     
 }
@@ -79,20 +80,8 @@ ul.novelties li {
     
 }
 
-.helion_wyszukiwarka {
-
-    width: 260px;
-    float: right;
-    
-}
-    
-.helion_wyszukiwarka input[type=text] {
-
-    width: 150px;
-    padding: 2px;
-    border: 1px solid #ddd;
-    
-}
+.helion_wyszukiwarka { margin-top: 15px; margin-bottom: 15px; width: 50%; float: right; }
+.helion_wyszukiwarka input[name="fraza"] { margin: 0; width: 70%; display: inline; }
 
 .wyszukiwarka_clear {
 
@@ -126,4 +115,56 @@ p a:hover {
     background: none !important;
     color: #444444 !important;
     
+}
+
+.helion_ksiazka .helion-box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.helion_ksiazka .helion-box a::after, 
+.helion_ksiazka .helion-box a::before {
+    content: " ";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 3px;
+}
+.helion_ksiazka .helion-box a {
+    box-shadow: none;
+    background-color: #f0f0f0;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    padding-left: 50px;
+    padding-right: 20px;
+    font-size: 16px;
+    display: inline-block;
+    height: 100%;
+    line-height: 36px;
+    position: relative;
+    text-decoration: none;
+    color: #000;
+}
+.helion_ksiazka .helion-box a:hover {
+    color: #fff;
+    background-color: #e4001e;
+    border: 1px solid #e6001e;
+    border-radius: 4px;
+    box-shadow: none;
+}
+.helion_ksiazka .helion-box a:hover:before {
+    opacity:0;
+}
+.helion_ksiazka .helion-box a:hover:after {
+    opacity:1;
+}
+.helion_ksiazka .helion-box a::before {
+    left: 8px;
+    background: transparent url(https://static01.helion.com.pl/helion/images/helion.svg) no-repeat -426px -321px;
+}
+.helion_ksiazka .helion-box a::after {
+    left: 8px;
+    background: transparent url(https://static01.helion.com.pl/helion/images/helion.svg) no-repeat -337px -321px;
+    opacity: 0;
 }

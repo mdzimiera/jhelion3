@@ -47,23 +47,32 @@ foreach($result as $ksiazka) {
     <div class="ksiazka_info">
         <table width="100%">
         <tr>
-            <td rowspan="5" class="okladka"><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><img src="http://<?php echo $ksiegarnia; ?>.pl/okladki/125x163/<?php echo preg_replace('/\_ebook$/i', '', $ksiazka['ident']); ?>.jpg" /></a></td>
+            <td rowspan="5" class="okladka"><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>">
+                    <img src="https://static01.helion.com.pl/global/okladki/125x163/<?php echo preg_replace('/\_ebook$/i', '', $ksiazka['ident']); ?>.jpg" />
+                </a>
+            </td>
             <td><h3><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $ksiazka['tytul']; ?></a></h3></td>
         </tr>
         <tr>
-            <td class="autor">Autor: <?php echo $ksiazka['autor']; ?></td>
+            <td class="autor"><b>Autor:</b> <?php echo $ksiazka['autor']; ?></td>
         </tr>
         <tr>
-            <td class="format">Format: <?php if(preg_match('/\_ebook$/i', $ksiazka['ident'])):?>eBook<?php else:?>Druk<?php endif?></td>
+            <td class="format"><b>Format:</b> 
+                <?php echo HelionHelper::getTypeByIdent($ksiazka['ident'])?>
+            </td>
         </tr>
         <tr>
             <td class="pcena">
-            <span class="cena">Cena: <?php echo $ksiazka['cena']; ?> zł</span> 
+                <span class="cena"><b>Cena:</b> <?php echo $ksiazka['cena']; ?> zł</span> 
             <?php if($ksiazka['znizka'] > 0) echo ' <span class="znizka">(-' . $ksiazka['znizka'] . "%)</span>"; ?>
         </td>
         </tr>
         <tr>
-            <td><p class="kupteraz"><a href="<?php echo $koszyk; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p></td>
+            <td>
+                <div class="helion-box">
+                    <a href="<?php echo $koszyk; ?>" title="Dodaj '<?php echo $ksiazka['tytul']; ?>' do koszyka" rel="nofollow" target="_blank">Kup teraz</a>
+                </div>
+            </td>
         </tr>
     </table>
     </div>

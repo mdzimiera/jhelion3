@@ -171,8 +171,8 @@ if($wyszukiwarka_w_tresci) {
 <div class="helion_wyszukiwarka">
     <form action="<?php echo JURI::current(); ?>" method="get">
         <input type="hidden" name="view" value="szukaj" />
-        <input type="text" name="fraza" value="<?php echo !empty($fraza) ? $fraza : 'wyszukaj...'; ?>" onclick="this.value = '';"/>
-        <input type="submit" value="Szukaj" />
+        <input type="text" name="fraza" class="input-small" value="<?php echo !empty($fraza) ? $fraza : 'wyszukaj...'; ?>" onclick="this.value = '';"/>
+        <input type="submit" value="Szukaj" class="btn btn-primary btn-small" />
     </form>
 </div>
 <div class="wyszukiwarka_clear"></div>
@@ -230,15 +230,19 @@ foreach($result as $ksiazka) {
 ?>
     <li>    
         <div class="helion_ksiazka">
-            <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><img src="http://helion.pl/okladki/90x119/<?php echo preg_replace('/\_ebook$/i', '', $ident); ?>.jpg" /></a>
+            <a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>">
+                <img src="https://static01.helion.com.pl/global/okladki/90x119/<?php echo preg_replace('/\_ebook$/i', '', $ident); ?>.jpg" />
+            </a>
             <div class="ksiazka_info">
                 <h3><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $this->trunc($ksiazka['tytul'], 5); ?></a></h3>
-                <p class="autor">Autor: <?php $a = explode(",", $ksiazka['autor']); if(count($a) == 1) { echo $a[0]; } else { echo $a[0] . " i in."; }; ?></p>
+                <p class="autor"><b>Autor:</b> <?php $a = explode(",", $ksiazka['autor']); if(count($a) == 1) { echo $a[0]; } else { echo $a[0] . " i in."; }; ?></p>
                 <p>
-                    <span class="cena">Cena: <?php echo $ksiazka['cena']; ?> zł</span> 
+                    <span class="cena"><b>Cena:</b> <?php echo $ksiazka['cena']; ?> zł</span> 
                     <?php if($ksiazka['znizka'] > 0) echo ' <span class="znizka">(-' . $ksiazka['znizka'] . "%)</span>"; ?>
                 </p>
-                <p class="kupteraz"><a href="<?php echo $koszyk; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p>
+                <div class="helion-box">
+                    <a href="<?php echo $koszyk; ?>" title="Dodaj '<?php echo $ksiazka['tytul']; ?>' do koszyka" rel="nofollow" target="_blank">Kup teraz</a>
+                </div>
             </div>
         </div>
     </li>
@@ -271,15 +275,19 @@ foreach($result as $ksiazka) {
 ?>
     <li>
         <div class="helion_ksiazka">
-            <a href="<?php echo $url; ?>"><img src="http://helion.pl/okladki/90x119/<?php echo preg_replace('/\_ebook$/i', '', $ident); ?>.jpg" /></a>
+            <a href="<?php echo $url; ?>">
+                <img src="https://static01.helion.com.pl/global/okladki/90x119/<?php echo preg_replace('/\_ebook$/i', '', $ident); ?>.jpg" />
+            </a>
             <div class="ksiazka_info">
                 <h3><a href="<?php echo $url; ?>" title="<?php echo $ksiazka['tytul']?>"><?php echo $this->trunc($ksiazka['tytul'], 5); ?></a></h3>
-                <p class="autor">Autor: <?php $a = explode(",", $ksiazka['autor']); if($a == $ksiazka['autor']) { echo $a; } else { echo $a[0] . " i in."; }; ?></p>
+                <p class="autor"><b>Autor:</b> <?php $a = explode(",", $ksiazka['autor']); if($a == $ksiazka['autor']) { echo $a; } else { echo $a[0] . " i in."; }; ?></p>
                 <p>
-                    <span class="cena">Cena: <?php echo $ksiazka['cena']; ?> zł</span> 
+                    <span class="cena"><b>Cena:</b> <?php echo $ksiazka['cena']; ?> zł</span> 
                     <?php if($ksiazka['znizka'] > 0) echo ' <span class="znizka">(-' . $ksiazka['znizka'] . "%)</span>"; ?>
                 </p>
-                <p class="kupteraz"><a href="<?php echo $koszyk; ?>" target="_blank"><img src="http://helion.pl/img/koszyk/koszszary.jpg"/></a></p>
+                <div class="helion-box">
+                    <a href="<?php echo $koszyk; ?>" title="Dodaj '<?php echo $ksiazka['tytul']; ?>' do koszyka" rel="nofollow" target="_blank">Kup teraz</a>
+                </div>
             </div>
         </div>
     </li>
