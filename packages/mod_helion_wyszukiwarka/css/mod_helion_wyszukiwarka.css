@@ -8,20 +8,8 @@ and open the template in the editor.
     Author     : marek
 */
 
-.helion_wyszukiwarka {
-    
-}
-
-.helion_wyszukiwarka form {
-    
-    padding: 0 !important;
-    margin: 0 !important;
-    
-}
-
-input[name="fraza"] {
-    
-    margin: 0;
-    width: 100px !important;
-    
-}
+.helion_wyszukiwarka {}
+.helion-search { text-align: center; }
+.helion_wyszukiwarka form { padding: 0 !important; margin: 0 !important; }
+.helion-search-submit { margin-top: 15px; }
+input[name="fraza"] { margin: 0; width: 95%; display: block; }

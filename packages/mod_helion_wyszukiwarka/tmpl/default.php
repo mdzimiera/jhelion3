@@ -14,8 +14,8 @@ if(empty($link_ksiegarnia)) {
 
 ?>
 
-    <form action="<?php echo $link_ksiegarnia; ?>" method="get">
-        <input type="text" name="fraza" value="wyszukaj książki..." onclick="this.value=''" /> 
-        <input type="submit" value="Szukaj" />
+    <form action="<?php echo $link_ksiegarnia; ?>" method="get" class="helion-search">
+        <input type="text" name="fraza" class="input-small" value="wyszukaj książki..." onclick="this.value=''" /> 
+        <input type="submit" value="Szukaj" class="helion-search-submit btn btn-primary btn-small"/>
 	<input type="hidden" name="view" value="szukaj" />
     </form>
