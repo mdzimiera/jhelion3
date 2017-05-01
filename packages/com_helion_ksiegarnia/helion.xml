@@ -7,7 +7,7 @@
 	<authorUrl></authorUrl>
 	<copyright>Copyright (C) Grupa Wydawnicza Helion 2014</copyright>
 	<license>GPL2</license>
-	<version>3.4.7</version>
+	<version>3.4.8</version>
 	<description>Otwórz własną księgarnię i zarabiaj z Programem Partnerskim GW Helion!</description>
 	<install>
 		<sql>

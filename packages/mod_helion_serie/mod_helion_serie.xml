@@ -3,7 +3,7 @@
     <name>Helion Serie</name>
     <creationDate>March 2015</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.4.7</version>
+    <version>3.4.8</version>
     <description>Moduł towarzyszący Księgarni - wyświetla listę serii</description>
     <files>
         <filename>mod_helion_serie.xml</filename>

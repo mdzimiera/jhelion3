@@ -1,3 +1,11 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 CREATE TABLE IF NOT EXISTS `#__helion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
     `ident` text NULL,
@@ -30,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `#__helion` (
     `seriewydawnicze` text NULL,
     `serietematyczne` text NULL,
    PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__helion_status` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -38,19 +46,17 @@ CREATE TABLE IF NOT EXISTS `#__helion_status` (
   `update_time` int(16) NOT NULL,
    PRIMARY KEY  (`id`),
    UNIQUE (`ksiegarnia`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__helion_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `meta` varchar(25) NOT NULL,
   `value` text NOT NULL,
    PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
-INSERT IGNORE INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion', '1'), ('onepress', '1'), ('sensus', '1'), ('septem', '1'), ('bezdroza', '1'), ('ebookpoint', '1');
-INSERT IGNORE INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion_kategorie', '1'), ('onepress_kategorie', '1'), ('sensus_kategorie', '1'), ('septem_kategorie', '1'), ('bezdroza_kategorie', '1'), ('ebookpoint_kategorie', '1');
-INSERT IGNORE INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion_serie', '1'), ('onepress_serie', '1'), ('sensus_serie', '1'), ('septem_serie', '1'), ('bezdroza_serie', '1'), ('ebookpoint_serie', '1');
+INSERT IGNORE INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion', '1'), ('onepress', '1'), ('sensus', '1'), ('septem', '1'), ('bezdroza', '1'), ('ebookpoint', '1'), ('videopoint', '1');
+INSERT IGNORE INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion_kategorie', '1'), ('onepress_kategorie', '1'), ('sensus_kategorie', '1'), ('septem_kategorie', '1'), ('bezdroza_kategorie', '1'), ('ebookpoint_kategorie', '1'), ('videopoint_kategorie', '1');
+INSERT IGNORE INTO `#__helion_status` (`ksiegarnia`, `update_time`) VALUES ('helion_serie', '1'), ('onepress_serie', '1'), ('sensus_serie', '1'), ('septem_serie', '1'), ('bezdroza_serie', '1'), ('ebookpoint_serie', '1'), ('videopoint_serie', '1');
 
 ALTER TABLE `#__helion` ADD COLUMN `spis_tresci` text NULL;
-
-

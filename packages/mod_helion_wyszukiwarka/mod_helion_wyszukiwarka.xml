@@ -3,7 +3,7 @@
     <name>Helion Wyszukiwarka</name>
     <creationDate>March 2014</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.4.7</version>
+    <version>3.4.8</version>
     <description>Moduł wyszukiwarki działa w połączeniu z komponentem Helion Księgarnia. Pozwala umieścić na stronie wyszukiwarkę książek.</description>
     <files>
         <filename>mod_helion_wyszukiwarka.xml</filename>

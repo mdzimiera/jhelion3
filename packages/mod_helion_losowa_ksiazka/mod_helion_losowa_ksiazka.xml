@@ -3,7 +3,7 @@
     <name>Helion Losowa Książka</name>
     <creationDate>March 2014</creationDate>
     <author>Marek Dzimiera</author>
-    <version>3.4.7</version>
+    <version>3.4.8</version>
     <description>Moduł wyświetlający losowo jedną z książek spośród wskazanych przez ciebie pozycji.</description>
     <files>
         <filename>mod_helion_losowa_ksiazka.xml</filename>
