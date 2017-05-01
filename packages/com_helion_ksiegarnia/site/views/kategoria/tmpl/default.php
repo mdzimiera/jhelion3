@@ -95,8 +95,8 @@ if($wyszukiwarka_w_tresci) {
 <div class="helion_wyszukiwarka">
     <form action="<?php echo JURI::current(); ?>" method="get">
         <input type="hidden" name="view" value="szukaj" />
-        <input type="text" name="fraza" value="<?php echo !empty($fraza) ? $fraza : 'wyszukaj...'; ?>" onclick="this.value = '';"/>
-        <input type="submit" value="Szukaj" />
+        <input type="text" name="fraza" class="input-small" value="<?php echo !empty($fraza) ? $fraza : 'wyszukaj...'; ?>" onclick="this.value = '';"/>
+        <input type="submit" value="Szukaj" class="btn btn-primary btn-small" />
     </form>
 </div>
 <div class="wyszukiwarka_clear"></div>
